@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+header ul li {
+    @apply px-2;
+}
+
+.bg-primary {
+    background: rgb(85 81 227);
+}
+
+.bg-secondary {
+    background: #2b2d77;
+}
+
+.mobile-nav {
+    @apply fixed top-10 left-0 bg-gray-800 w-full h-1/4  ;
+}
+
+.mobile-nav li {
+    @apply w-full h-full text-center border-b-2 ;
+}
+
