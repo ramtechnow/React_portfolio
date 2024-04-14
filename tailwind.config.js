@@ -6,7 +6,8 @@ module.exports = {
   theme: {
     extend: {
       borderColor :{
-        'primary':'rgb(85 81 227)'
+        'primary':'rgb(85 81 227)',
+        'Secondary':'#2b2d77',
       }
     },
     fontFamily :{
