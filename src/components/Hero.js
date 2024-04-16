@@ -1,4 +1,4 @@
-import HeroImg from '../assets/hero.png'
+import HeroImg from '../assets/profile.svg'
 import { AiOutlineTwitter,AiOutlineFacebook,AiOutlineLinkedin, } from "react-icons/ai";
 export default function Hero() {
     const config ={
