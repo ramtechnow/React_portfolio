@@ -1,0 +1,7 @@
+if you update same think inside the code kindly follow below steps
+
+npm run build
+
+next
+
+firebase deploy

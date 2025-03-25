@@ -19,7 +19,7 @@ export default function Projects() {
             {
                 image: websiteImg3,
                 description: 'Basic Blog Website . Built with Next JS and MongoDB',
-                link: 'https://github.com/ramtechnow/profile'
+                link: 'https://github.com/ramtechnow/image_search-using-unsplash-api'
             }
         ]
     }
