@@ -1,5 +1,5 @@
-import websiteImg1 from '../assets/company project.jpg';
-import websiteImg2 from '../assets/ecommerce-website.jpg';
+import websiteImg1 from '../assets/company project.png';
+import websiteImg2 from '../assets/ecommerce-website.png';
 import websiteImg3 from '../assets/project.jpg';
 
 export default function Projects() {
@@ -8,17 +8,17 @@ export default function Projects() {
         projects : [
             {
                 image: websiteImg1,
-                description: 'A Ecommerce Website. Built with MERN Stack.',
+                description: 'Company website. Built with React bootstrap 5.',
                 link: 'https://github.com/ramtechnow/SINX-TECHNOLOGIES'
             },
             {
                 image: websiteImg2,
-                description: 'Food Ecommerce website like Swiggy, Built with Angular & .Net',
-                link: 'https://github.com/ramtechnow/my-new-portofilo'
+                description: 'Login and logout tracker. Bulit with python tkinter and send email.',
+                link: 'https://github.com/ramtechnow/LILO-Tracker'
             },
             {
                 image: websiteImg3,
-                description: 'Basic Blog Website . Built with Next JS and MongoDB',
+                description: 'Image Search App using Unsplash API.',
                 link: 'https://github.com/ramtechnow/image_search-using-unsplash-api'
             }
         ]

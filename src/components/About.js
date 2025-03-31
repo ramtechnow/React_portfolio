@@ -4,7 +4,7 @@ export default function About() {
     const config ={
         line1:'Hi, My Name is shriram,Im a full stack devloper.I built Beautiful Website with React.js and Tailwind css + boostarp.',
         line2:'I am proficient in the frontend skills like React redux Tool kit,Tailwind CSS,SaSS,Css3 and many more.',
-        line3:'In Backend I know Node js, Express.js,Mango DB and Mongoose. ',
+        line3:'Developed a Python-based bot using Tkinter and Outlook integration. The bot automates the process of sending emails and tracking login/logout times.',
     }
 
 
