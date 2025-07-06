@@ -1,8 +1,5 @@
 {
   "projects": {
-    "default": "portfolio-f7afe",
-    "y": "portfolio-f7afe"
-  },
-  "targets": {},
-  "etags": {}
+    "default": "portfolio-f7afe"
+  }
 }
