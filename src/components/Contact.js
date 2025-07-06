@@ -9,7 +9,7 @@ export default function Contact() {
       {/* Bubble Background */}
       <div className="bubble-bg absolute inset-0 -z-10">
         {[...Array(12)].map((_, i) => (
-          <span key={i} className="bubble"></span>
+          <span key={i} className="bubble"></span>  
         ))}
       </div>
 

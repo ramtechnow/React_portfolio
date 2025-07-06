@@ -9,7 +9,14 @@ export default function About() {
   }
 
   return (
-    <section className="flex flex-col md:flex-row bg-secondary px-5 py-10" id="about">
+    <section className="flex flex-col md:flex-row bg-primary px-5 py-10" id="about">
+      {/* Bubble Animation Background */}
+      <div className="bubble-bg z-10">
+        {[...Array(12)].map((_, i) => (
+          <span key={i} className="bubble"></span>
+        ))}
+      </div>
+
       {/* Image Section */}
       <motion.div
         className="md:w-1/2"
@@ -31,7 +38,7 @@ export default function About() {
       >
         <div className="flex flex-col justify-center text-white max-w-xl">
           <motion.h1
-            className="text-4xl border-b-4 border-primary mb-5 w-fit font-bold"
+            className="text-4xl border-b-4 border-white mb-5 w-fit font-bold"
             initial={{ scale: 0.8 }}
             whileInView={{ scale: 1 }}
             transition={{ duration: 0.5 }}

@@ -1,6 +1,8 @@
-import websiteImg1 from "../assets/company project.png";
-import websiteImg2 from "../assets/ecommerce-website.png";
+import websiteImg1 from "../assets/ecommerce-website.png";
+import websiteImg2 from "../assets/LILO.png";
 import websiteImg3 from "../assets/project.jpg";
+import websiteImg4 from "../assets/company project.png";
+import websiteImg5 from "../assets/grocery.png";
 
 export default function Projects() {
   const config = {
@@ -8,7 +10,7 @@ export default function Projects() {
       {
         image: websiteImg1,
         description: "Company website. Built with React Bootstrap 5.",
-        link: "https://github.com/ramtechnow/SINX-TECHNOLOGIES",
+        link: "https://ecommerce-website-dfd55.web.app/",
       },
       {
         image: websiteImg2,
@@ -20,6 +22,16 @@ export default function Projects() {
         image: websiteImg3,
         description: "Image Search App using Unsplash API.",
         link: "https://github.com/ramtechnow/image_search-using-unsplash-api",
+      },
+      {
+        image: websiteImg4,
+        description: "Client Company website",
+        link: "https://ramtechnow.github.io/SINX-TECHNOLOGIES/",
+      },
+      {
+        image: websiteImg5,
+        description: "Grocery_boostrap_webpage",
+        link: "https://github.com/ramtechnow/Grocery_boostrap_webpage",
       },
     ],
   };

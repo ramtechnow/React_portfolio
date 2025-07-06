@@ -1,13 +1,14 @@
 import HeroImg from '../assets/profile.svg';
-import { AiOutlineTwitter, AiOutlineFacebook, AiOutlineLinkedin } from "react-icons/ai";
+import { AiOutlineGithub, AiOutlineLinkedin } from "react-icons/ai";
+import { AiOutlineWhatsApp } from 'react-icons/ai';
 import './Hero.css';
 
 export default function Hero() {
   const config = {
     subtitle: "I'm a Full-stack Developer and Designer",
     social: {
-      twitter: 'https://twitter.com/',
-      facebook: 'https://www.facebook.com/',
+      whatsapp: 'https://wa.me/919080339752/',
+      github: 'https://github.com/ramtechnow',
       linkedin: 'https://www.linkedin.com/in/shriram-m-g-387a59241/',
     },
   };
@@ -31,11 +32,11 @@ export default function Hero() {
 
         {/* Social Icons */}
         <div className="flex py-10">
-          <a href={config.social.twitter} target="_blank" rel="noopener noreferrer" className="pr-5 hover:text-white">
-            <AiOutlineTwitter size={40} />
+          <a href={config.social.whatsapp} target="_blank" rel="noopener noreferrer" className="pr-5 hover:text-white">
+            <AiOutlineWhatsApp size={40} />
           </a>
-          <a href={config.social.facebook} target="_blank" rel="noopener noreferrer" className="pr-5 hover:text-white">
-            <AiOutlineFacebook size={40} />
+          <a href={config.social.github} target="_blank" rel="noopener noreferrer" className="pr-5 hover:text-white">
+            <AiOutlineGithub size={40} />
           </a>
           <a href={config.social.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-white">
             <AiOutlineLinkedin size={40} />
