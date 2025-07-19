@@ -7,12 +7,12 @@ export default function Header() {
   return (
     <header className="bg-primary shadow-md z-50 fixed top-0 left-0 w-full">
       <div className="flex justify-between items-center px-5 py-4">
-        <a className="font-bold text-black text-xl" href="#home">Shriram MG</a>
+        <a className="font-bold text-black text-xl" href="#">Shriram MG</a>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:block">
           <ul className="flex gap-6 text-white font-medium">
-            <li><a href="#home">Home</a></li>
+            <li><a href="#">Home</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#resume">Resume</a></li>

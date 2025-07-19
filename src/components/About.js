@@ -10,13 +10,6 @@ export default function About() {
 
   return (
     <section className="flex flex-col md:flex-row bg-primary px-5 py-10" id="about">
-      {/* Bubble Animation Background */}
-      <div className="bubble-bg z-10">
-        {[...Array(12)].map((_, i) => (
-          <span key={i} className="bubble"></span>
-        ))}
-      </div>
-
       {/* Image Section */}
       <motion.div
         className="md:w-1/2"
@@ -50,6 +43,7 @@ export default function About() {
           <motion.p className="pb-5" whileHover={{ scale: 1.02 }}>{config.line3}</motion.p>
         </div>
       </motion.div>
+
     </section>
   )
 }

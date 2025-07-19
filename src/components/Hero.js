@@ -1,6 +1,5 @@
 import HeroImg from '../assets/profile.svg';
-import { AiOutlineGithub, AiOutlineLinkedin } from "react-icons/ai";
-import { AiOutlineWhatsApp } from 'react-icons/ai';
+import { AiOutlineGithub, AiOutlineLinkedin, AiOutlineWhatsApp } from "react-icons/ai";
 import './Hero.css';
 
 export default function Hero() {
@@ -15,12 +14,7 @@ export default function Hero() {
 
   return (
     <section className="relative flex md:flex-row flex-col px-5 py-32 bg-primary justify-center overflow-hidden">
-      {/* Bubble Animation Background */}
-      <div className="bubble-bg">
-        {[...Array(12)].map((_, i) => (
-          <span key={i} className="bubble"></span>
-        ))}
-      </div>
+
 
       {/* Text Content */}
       <div className="md:w-1/2 flex flex-col z-10">
