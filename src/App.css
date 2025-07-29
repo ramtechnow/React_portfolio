@@ -7,11 +7,11 @@ header ul li {
 }
 
 .bg-primary {
-    background: rgb(85 81 227);
+    background:#eff0f3;
 }
 
 .bg-secondary {
-    background: #2b2d77;
+    background:#ff8e3c;
 }
 
 .mobile-nav {
@@ -28,7 +28,7 @@ header ul li {
     opacity: 1;
 }
 .btn {
-    @apply bg-primary px-5 py-2 font-bold hover:border-2 border-white rounded;
+    @apply bg-primary px-5 py-2 font-bold hover:border-2 border-black rounded;
 }
 html {
     scroll-behavior:smooth;

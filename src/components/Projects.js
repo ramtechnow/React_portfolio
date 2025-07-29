@@ -31,7 +31,7 @@ export default function Projects() {
       {
         image: websiteImg5,
         description: "Grocery_boostrap_webpage",
-        link: "https://github.com/ramtechnow/Grocery_boostrap_webpage",
+        link: "https://ramtechnow.github.io/Grocery_boostrap_webpage/",
       },
     ],
   };
@@ -39,7 +39,7 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="relative flex flex-col py-20 px-5 justify-center bg-primary text-white overflow-hidden"
+      className="relative flex flex-col py-20 px-5 justify-center text-black overflow-hidden bg-primary"
     >
       {/* Bubble Background */}
       <div className="bubble-bg absolute inset-0 -z-10">
@@ -50,10 +50,10 @@ export default function Projects() {
 
       {/* Section Header */}
       <div className="w-full flex flex-col px-10 py-5">
-        <h1 className="text-4xl border-b-4 border-Secondary mb-5 w-[150px] font-bold">
+        <h1 className="text-4xl border-b-4 border-[#d9376e] mb-5 w-[150px] font-bold">
           Projects
         </h1>
-        <p>
+        <p className="color-[#2a2a2a] text-xl">
           These are some of my best projects. I have built these with React,
           MERN, and vanilla CSS. Check them out.
         </p>
@@ -65,14 +65,14 @@ export default function Projects() {
           {config.projects.map((project, index) => (
             <div key={index} className="relative group overflow-hidden rounded shadow-lg">
               <img
-                className="h-[200px] w-full object-cover"
+                className="h-[250px] w-full object-cover"
                 src={project.image}
                 alt="Project screenshot"
               />
-              <div className="project-desc bg-black bg-opacity-70 absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center text-white">
+              <div className="project-desc bg-black bg-opacity-70 absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center text-black">
                 <p className="text-center px-5 py-5">{project.description}</p>
                 <a
-                  className="btn bg-secondary text-white px-4 py-2 rounded hover:bg-opacity-80 transition"
+                  className="btn bg-white text-black px-4 py-2 rounded hover:bg-opacity-80 transition"
                   target="_blank"
                   rel="noopener noreferrer"
                   href={project.link}
