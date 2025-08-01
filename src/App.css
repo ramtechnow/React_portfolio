@@ -57,3 +57,36 @@ html {
     filter: brightness(1);
   }
 }
+@keyframes float {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 0.15;
+  }
+  100% {
+    transform: translateY(-100vh) translateX(20px);
+    opacity: 0;
+  }
+}
+
+.animate-float {
+  animation: float linear infinite;
+}
+
+@keyframes tilt {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(1deg);
+  }
+  75% {
+    transform: rotate(-1deg);
+  }
+}
+
+.animate-tilt {
+  animation: tilt 6s ease-in-out infinite;
+}
