@@ -21,7 +21,7 @@ export default function Projects() {
       {
         image: websiteImg3,
         description: "Image Search App using Unsplash API.",
-        link: "https://github.com/ramtechnow/image_search-using-unsplash-api",
+        link: "https://image-search-using-unsplash-api.vercel.app/",
       },
       {
         image: websiteImg4,

@@ -2,7 +2,7 @@ import ResumeImg1 from "../assets/resume.svg";
 
 export default function Resume() {
   const config = {
-    link: "https://oto.lv.tab.digital/s/rA7AzkeaNK4rZ63",
+    link: "https://oto.lv.tab.digital/s/dB9gBTWdyiPmXMp",
   };
   
   return (
