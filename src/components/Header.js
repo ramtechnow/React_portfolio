@@ -2,6 +2,7 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid';
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import AnimatedCursor from 'react-animated-cursor';
+import { Link } from 'react-router-dom';
 
 export default function Header() {
   const [toggleMenu, setToggleMenu] = useState(false);
@@ -53,11 +54,12 @@ export default function Header() {
   }, [toggleMenu]);
 
   const navItems = [
-    { name: 'Home', href: '#', underlineColor: 'bg-blue-500 dark:bg-blue-400' },
+    { name: 'Home', href: '#home', underlineColor: 'bg-blue-500 dark:bg-blue-400' },
     { name: 'About', href: '#about', underlineColor: 'bg-green-500 dark:bg-green-400' },
     { name: 'Projects', href: '#projects', underlineColor: 'bg-purple-500 dark:bg-purple-400' },
     { name: 'Resume', href: '#resume', underlineColor: 'bg-yellow-500 dark:bg-yellow-400' },
     { name: 'Contact', href: '#contact', underlineColor: 'bg-red-500 dark:bg-red-400' },
+    { name: 'Blog', href: '/blog', underlineColor: 'bg-green-500 dark:bg-green-400' },
   ];
 
   const headerBackground = scrolled 
@@ -65,6 +67,41 @@ export default function Header() {
     : 'bg-white dark:bg-gray-900';
 
   const mobileMenuBackground = 'bg-white/95 dark:bg-gray-900/95';
+
+  // Helper function to determine if link should use Link or anchor
+  const NavLink = ({ item }) => {
+    if (item.href.startsWith('/')) {
+      return (
+        <Link 
+          to={item.href} 
+          className="text-gray-700 dark:text-gray-300 font-medium hover:text-gray-900 dark:hover:text-white transition-colors duration-200 relative py-2 px-1 group custom-hover"
+          onClick={() => setToggleMenu(false)}
+        >
+          {item.name}
+          <span className={`absolute bottom-0 left-0 w-0 h-0.5 ${item.underlineColor} transition-all duration-300 group-hover:w-full`} />
+        </Link>
+      );
+    } else {
+      return (
+        <Link
+          to={`/#${item.href.substring(1)}`}
+          className="text-gray-700 dark:text-gray-300 font-medium hover:text-gray-900 dark:hover:text-white transition-colors duration-200 relative py-2 px-1 group custom-hover"
+          onClick={() => {
+            setToggleMenu(false);
+            setTimeout(() => {
+              const element = document.getElementById(item.href.substring(1));
+              if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+              }
+            }, 10);
+          }}
+        >
+          {item.name}
+          <span className={`absolute bottom-0 left-0 w-0 h-0.5 ${item.underlineColor} transition-all duration-300 group-hover:w-full`} />
+        </Link>
+      );
+    }
+  };
 
   return (
     <>
@@ -100,33 +137,31 @@ export default function Header() {
       <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${headerBackground}`}>
         <div className="container m-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4 md:py-5">
-            {/* Logo */}
-            <motion.a 
-              href="#"
-              className="font-bold text-gray-900 dark:text-white text-2xl hover:text-primary-500 dark:hover:text-primary-400 transition-colors duration-200 flex items-center custom-hover"
+            {/* Logo - Changed to Link */}
+            <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              className="flex items-center custom-hover"
             >
-              <span className="relative">
-                Shriram MG
-                <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 dark:from-blue-400 dark:to-purple-400 transform origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100" />
-              </span>
-            </motion.a>
+              <Link to="/" className="font-bold text-gray-900 dark:text-white text-2xl hover:text-primary-500 dark:hover:text-primary-400 transition-colors duration-200">
+                <span className="relative">
+                  Shriram MG
+                  <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 dark:from-blue-400 dark:to-purple-400 transform origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100" />
+                </span>
+              </Link>
+            </motion.div>
 
             {/* Desktop Navigation */}
             <nav className="hidden md:block">
               <ul className="flex gap-6">
                 {navItems.map((item) => (
                   <li key={item.name}>
-                    <motion.a
-                      href={item.href}
-                      className="text-gray-700 dark:text-gray-300 font-medium hover:text-gray-900 dark:hover:text-white transition-colors duration-200 relative py-2 px-1 group custom-hover"
+                    <motion.div
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
-                      {item.name}
-                      <span className={`absolute bottom-0 left-0 w-0 h-0.5 ${item.underlineColor} transition-all duration-300 group-hover:w-full`} />
-                    </motion.a>
+                      <NavLink item={item} />
+                    </motion.div>
                   </li>
                 ))}
               </ul>
@@ -168,14 +203,33 @@ export default function Header() {
                       whileTap={{ scale: 0.98 }}
                       transition={{ type: "spring", stiffness: 400, damping: 10 }}
                     >
-                      <a
-                        href={item.href}
-                        onClick={() => setToggleMenu(false)}
-                        className={`block py-3 px-4 text-gray-700 dark:text-gray-300 font-medium hover:text-gray-900 dark:hover:text-white hover:bg-gray-100/50 dark:hover:bg-gray-800/50 rounded-md transition-colors duration-200 relative group custom-hover`}
-                      >
-                        {item.name}
-                        <span className={`absolute bottom-2 left-4 right-4 h-0.5 ${item.underlineColor} transform origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100`} />
-                      </a>
+                      {item.href.startsWith('/') ? (
+                        <Link
+                          to={item.href}
+                          onClick={() => setToggleMenu(false)}
+                          className={`block py-3 px-4 text-gray-700 dark:text-gray-300 font-medium hover:text-gray-900 dark:hover:text-white hover:bg-gray-100/50 dark:hover:bg-gray-800/50 rounded-md transition-colors duration-200 relative group custom-hover`}
+                        >
+                          {item.name}
+                          <span className={`absolute bottom-2 left-4 right-4 h-0.5 ${item.underlineColor} transform origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100`} />
+                        </Link>
+                      ) : (
+                        <Link
+                          to={`/#${item.href.substring(1)}`}
+                          onClick={() => {
+                            setToggleMenu(false);
+                            setTimeout(() => {
+                              const element = document.getElementById(item.href.substring(1));
+                              if (element) {
+                                element.scrollIntoView({ behavior: 'smooth' });
+                              }
+                            }, 10);
+                          }}
+                          className={`block py-3 px-4 text-gray-700 dark:text-gray-300 font-medium hover:text-gray-900 dark:hover:text-white hover:bg-gray-100/50 dark:hover:bg-gray-800/50 rounded-md transition-colors duration-200 relative group custom-hover`}
+                        >
+                          {item.name}
+                          <span className={`absolute bottom-2 left-4 right-4 h-0.5 ${item.underlineColor} transform origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100`} />
+                        </Link>
+                      )}
                     </motion.li>
                   ))}
                 </ul>

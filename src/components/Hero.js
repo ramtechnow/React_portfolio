@@ -1,6 +1,7 @@
 import HeroImg from '../assets/profile.svg';
 import { AiOutlineGithub, AiOutlineLinkedin, AiOutlineWhatsApp } from "react-icons/ai";
 import './bubbel.css';
+import { useEffect } from 'react';
 
 export default function Hero() {
   const config = {
@@ -35,8 +36,15 @@ export default function Hero() {
     );
   });
 
+  // Handle hash navigation for the hero section
+  useEffect(() => {
+    if (window.location.hash === '#home') {
+      window.scrollTo(0, 0);
+    }
+  }, []);
+
   return (
-    <section className="relative bg-primary flex md:flex-row flex-col px-5 py-32 justify-center overflow-hidden min-h-screen">
+    <section id="home" className="relative bg-primary flex md:flex-row flex-col px-5 py-32 justify-center overflow-hidden min-h-screen">
       {/* Bubble background */}
       <div className="bubble-bg" aria-hidden="true">
         {bubbles}

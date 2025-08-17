@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import AboutImg from '../assets/about.svg';
+import { useEffect } from 'react';
 
 const About = () => {
   const aboutContent = {
@@ -27,6 +28,19 @@ const About = () => {
       transition: { duration: 0.6 }
     }
   };
+
+  // Handle hash navigation for the about section
+  useEffect(() => {
+    if (window.location.hash === '#about') {
+      const element = document.getElementById('about');
+      if (element) {
+        // Small timeout to ensure the page has rendered
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+    }
+  }, []);
 
   return (
     <section 
