@@ -4,7 +4,7 @@ import "./Blog.css";
 
 const Blog = () => {
   return (
-    <div className="blog-container bg-primary text-gray-800">
+    <div className="blog-container bg-primary text-gray-800 overflow-x-hidden">
       {/* Animated Header */}
       <motion.header 
         className="blog-header relative overflow-hidden"
@@ -12,17 +12,17 @@ const Blog = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <div className="header-gradient absolute inset-0 bg-gradient-to-r from-secondary to-accent opacity-90"></div>
-        <div className="relative z-10 max-w-4xl mx-auto px-6 py-16 md:py-24 text-center">
+        <div className="header-gradient absolute inset-0 bg-red-500 from-secondary to-accent opacity-90"></div>
+        <div className="relative z-10 max-w-4xl mx-auto px-4 py-12 md:px-6 md:py-24 text-center">
           <motion.h1
-            className="text-3xl md:text-5xl font-bold mb-4 text-white"
+            className="text-2xl md:text-5xl font-bold mb-4 text-white"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
           >
             From Automation to Innovation: My Journey as a Production Analyst
           </motion.h1>
-          <div className="header-meta flex justify-center space-x-6 text-white/80 text-sm md:text-base">
+          <div className="header-meta flex flex-col md:flex-row justify-center md:space-x-6 space-y-2 md:space-y-0 text-white/80 text-sm md:text-base">
             <span className="author">By Shriram</span>
             <span className="date">August 18, 2025</span>
             <span className="read-time">5 min read</span>
@@ -30,11 +30,11 @@ const Blog = () => {
         </div>
       </motion.header>
 
-      <main className="blog-content bg-white py-12">
-        <div className="content-wrapper max-w-4xl mx-auto px-6">
+      <main className="blog-content bg-white py-8 md:py-12">
+        <div className="content-wrapper max-w-4xl mx-auto px-4 md:px-6">
           {/* Introduction */}
           <motion.p 
-            className="intro text-lg md:text-xl leading-relaxed mb-12 p-6 bg-gray-50 rounded-lg border-l-4 border-accent"
+            className="intro text-base md:text-xl leading-relaxed mb-8 md:mb-12 p-4 md:p-6 bg-blue-200 rounded-lg border-l-4 border-accent"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
@@ -48,22 +48,22 @@ const Blog = () => {
 
           {/* My Story Section */}
           <motion.section 
-            className="blog-section mb-16"
+            className="blog-section mb-8 md:mb-16"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <div className="section-header flex items-center mb-6">
-              <div className="section-icon text-3xl mr-4">📖</div>
-              <h2 className="text-2xl md:text-3xl font-bold">My Story</h2>
+            <div className="section-header flex items-center mb-4 md:mb-6">
+              <div className="section-icon text-2xl md:text-3xl mr-3 md:mr-4">📖</div>
+              <h2 className="text-xl md:text-3xl font-bold">My Story</h2>
             </div>
-            <p className="text-gray-700 mb-6 leading-relaxed">
+            <p className="text-gray-700 mb-4 md:mb-6 leading-relaxed">
               At Tata Consultancy Services, I worked on the US Citi Bank (NAM
               Smart Automation) project, where I developed and maintained
               automated test scripts using Selenium WebDriver with Python.
             </p>
-            <div className="highlight-box bg-accent/10 p-6 rounded-lg border-l-4 border-accent italic">
+            <div className="highlight-box bg-accent/10 p-4 md:p-6 rounded-lg border-l-4 border-accent italic">
               <p className="text-gray-700">
                 "Collaboration and communication are as vital as technical
                 skills in delivering successful projects."
@@ -73,17 +73,17 @@ const Blog = () => {
 
           {/* Skills Section */}
           <motion.section 
-            className="blog-section mb-16"
+            className="blog-section mb-8 md:mb-16"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.3 }}
             viewport={{ once: true }}
           >
-            <div className="section-header flex items-center mb-6">
-              <div className="section-icon text-3xl mr-4">🚀</div>
-              <h2 className="text-2xl md:text-3xl font-bold">Skills that Drive Innovation</h2>
+            <div className="section-header flex items-center mb-4 md:mb-6">
+              <div className="section-icon text-2xl md:text-3xl mr-3 md:mr-4">🚀</div>
+              <h2 className="text-xl md:text-3xl font-bold">Skills that Drive Innovation</h2>
             </div>
-            <ul className="skills-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <ul className="skills-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
               {[
                 { icon: "💻", title: "Programming", desc: "HTML, CSS, Python, Java (Basics), JavaScript" },
                 { icon: "🛠️", title: "Frameworks", desc: "React JS, Tkinter, Tailwind CSS, Vite" },
@@ -93,12 +93,12 @@ const Blog = () => {
               ].map((skill, index) => (
                 <motion.li 
                   key={index}
-                  className="skill-card bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-100"
+                  className="skill-card bg-white p-4 md:p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-100"
                   whileHover={{ y: -5 }}
                 >
-                  <div className="skill-icon text-3xl mb-3">{skill.icon}</div>
-                  <h3 className="text-xl font-semibold mb-2">{skill.title}</h3>
-                  <p className="text-gray-600">{skill.desc}</p>
+                  <div className="skill-icon text-2xl md:text-3xl mb-2 md:mb-3">{skill.icon}</div>
+                  <h3 className="text-lg md:text-xl font-semibold mb-1 md:mb-2">{skill.title}</h3>
+                  <p className="text-gray-600 text-sm md:text-base">{skill.desc}</p>
                 </motion.li>
               ))}
             </ul>
@@ -106,17 +106,17 @@ const Blog = () => {
 
           {/* Projects Section */}
           <motion.section 
-            className="blog-section mb-16"
+            className="blog-section mb-8 md:mb-16"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.4 }}
             viewport={{ once: true }}
           >
-            <div className="section-header flex items-center mb-6">
-              <div className="section-icon text-3xl mr-4">✨</div>
-              <h2 className="text-2xl md:text-3xl font-bold">Projects that Showcase My Skills</h2>
+            <div className="section-header flex items-center mb-4 md:mb-6">
+              <div className="section-icon text-2xl md:text-3xl mr-3 md:mr-4">✨</div>
+              <h2 className="text-xl md:text-3xl font-bold">Projects that Showcase My Skills</h2>
             </div>
-            <div className="projects-container grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="projects-container grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
               {[
                 { 
                   badge: "E-commerce", 
@@ -136,15 +136,15 @@ const Blog = () => {
                   className="project-card relative bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
                   whileHover={{ scale: 1.02 }}
                 >
-                  <div className="absolute top-4 right-4 bg-accent text-white px-3 py-1 rounded-full text-xs font-medium">
+                  <div className="absolute top-3 right-3 md:top-4 md:right-4 bg-accent text-white px-2 py-1 md:px-3 md:py-1 rounded-full text-xs font-medium">
                     {project.badge}
                   </div>
-                  <div className="p-6">
-                    <h3 className="text-xl font-semibold mb-3">{project.title}</h3>
-                    <p className="text-gray-600 mb-4">{project.desc}</p>
-                    <div className="tech-tags flex flex-wrap gap-2">
+                  <div className="p-4 md:p-6">
+                    <h3 className="text-lg md:text-xl font-semibold mb-2 md:mb-3">{project.title}</h3>
+                    <p className="text-gray-600 text-sm md:text-base mb-3 md:mb-4">{project.desc}</p>
+                    <div className="tech-tags flex flex-wrap gap-1 md:gap-2">
                       {project.tags.map((tag, i) => (
-                        <span key={i} className="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm">
+                        <span key={i} className="bg-gray-100 text-gray-800 px-2 py-0.5 md:px-3 md:py-1 rounded-full text-xs md:text-sm">
                           {tag}
                         </span>
                       ))}
@@ -157,23 +157,23 @@ const Blog = () => {
 
           {/* CTA Section */}
           <motion.section 
-            className="cta-section bg-gradient-to-r from-secondary to-accent rounded-xl p-8 md:p-12 text-white"
+            className="cta-section bg-gradient-to-r from-secondary to-accent rounded-xl p-6 md:p-12 text-white"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.5 }}
             viewport={{ once: true }}
           >
             <div className="cta-content max-w-2xl mx-auto text-center">
-              <h2 className="text-2xl md:text-3xl font-bold mb-4">Let's Connect!</h2>
-              <p className="mb-8 text-white/90">
+              <h2 className="text-xl md:text-3xl font-bold mb-3 md:mb-4">Let's Connect!</h2>
+              <p className="mb-6 md:mb-8 black-white/90 text-sm md:text-base">
                 If you're interested in learning more about my projects or
                 exploring potential collaborations, feel free to reach out to
                 me.
               </p>
-              <div className="cta-buttons flex flex-col sm:flex-row justify-center gap-4">
+              <div className="cta-buttons flex flex-col sm:flex-row justify-center gap-3 md:gap-4">
                 <motion.a
                   href="mailto:ramtechnow@gmail.com"
-                  className="email-button bg-white text-gray-900 px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors duration-300"
+                  className="email-button bg-red-500 text-white px-4 py-2 md:px-6 md:py-3 rounded-lg font-medium hover:bg-green transition-colors duration-300 text-sm md:text-base"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -183,7 +183,7 @@ const Blog = () => {
                   href="https://www.linkedin.com/in/shriram-m-g-387a59241/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="linkedin-button bg-gray-900 text-white px-6 py-3 rounded-lg font-medium hover:bg-gray-800 transition-colors duration-300"
+                  className="linkedin-button bg-gray-900 text-white px-4 py-2 md:px-6 md:py-3 rounded-lg font-medium hover:bg-gray-800 transition-colors duration-300 text-sm md:text-base"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
