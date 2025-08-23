@@ -4,6 +4,7 @@ import websiteImg2 from "../assets/LILO.png";
 import websiteImg3 from "../assets/project.jpg";
 import websiteImg4 from "../assets/company project.png";
 import websiteImg5 from "../assets/grocery.png";
+import websiteImg6 from "../assets/Weather_app.png";
 import { useEffect } from 'react';
 
 export default function Projects() {
@@ -34,6 +35,11 @@ export default function Projects() {
         image: websiteImg5,
         description: "Grocery_boostrap_webpage",
         link: "https://ramtechnow.github.io/Grocery_boostrap_webpage/",
+      },
+      {
+        image: websiteImg6,
+        description: "Weather_app_using_api",
+        link: "https://fir-sample-84c93.web.app/",
       },
     ],
   };
