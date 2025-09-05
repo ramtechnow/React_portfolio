@@ -22,7 +22,7 @@ export default function Footer() {
 
   return (
     <motion.footer
-      className="bg-primary text-black py-8 px-4"
+      className="bg-primary text-white py-8 px-4"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
@@ -43,7 +43,7 @@ export default function Footer() {
               href={link.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-700 hover:text-accent transition-colors duration-300"
+              className="text-white-700 hover:text-accent transition-colors duration-300"
               whileHover={{ y: -3 }}
               aria-label={link.label}
             >

@@ -1,37 +1,126 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* App.css */
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
 
+.light-mode {
+  background:linear-gradient(to bottom, #1f2937, #374151);
+  color: #000000;
+}
+
+.dark-mode {
+  background:linear-gradient(to bottom, #111827, #1f2937);
+  color: #ffffff;
+}
+
+/* Ensure the cursor has proper contrast in both modes */
+.react-animated-cursor {
+  z-index: 9999;
+}
+
+.dark-mode button {
+  color: #fff;
+}
+
+.dark-mode .footer {
+  background-color: #f4f0f0;
+  border-top: 1px solid #ec1313;
+}
+
+/* Header styles */
 header ul li {
-    @apply px-2;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
 }
 
 .bg-primary {
-    background:#eff0f3;
+  background: #eff0f3;
+}
+
+.dark-mode .bg-primary {
+  background: #151d2c;
 }
 
 .bg-secondary {
-    background:#ff8e3c;
+  background: #ff8e3c;
+}
+
+.dark-mode .bg-secondary {
+  background: #ed8936;
 }
 
 .mobile-nav {
-    @apply fixed top-10 left-0 bg-gray-800 w-full h-1/4 ;
+  position: fixed;
+  top: 2.5rem;
+  left: 0;
+  background-color: #4a5568;
+  width: 100%;
+  height: 25%;
+}
+
+.dark-mode .mobile-nav {
+  background-color: #2d3748;
 }
 
 .mobile-nav li {
-    @apply w-full h-full text-center border-b-2;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  border-bottom-width: 2px;
 }
+
 .project-desc {
-    @apply absolute left-0 right-0 bottom-0 top-0 bg-secondary opacity-0 duration-500;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background-color: #ff8e3c;
+  opacity: 0;
+  transition-duration: 500ms;
 }
+
+.dark-mode .project-desc {
+  background-color: #ed8936;
+}
+
 .project-desc:hover {
-    opacity: 1;
+  opacity: 1;
 }
+
 .btn {
-    @apply bg-primary px-5 py-2 font-bold hover:border-2 border-black rounded;
+  background-color: #eff0f3;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  font-weight: 700;
+  border-radius: 0.25rem;
 }
+
+.dark-mode .btn {
+  background-color: #2d3748;
+  color: #fff;
+  border-color: #fff;
+}
+
+.btn:hover {
+  border-width: 2px;
+  border-color: #000;
+}
+
+.dark-mode .btn:hover {
+  border-color: #8a8a8a;
+}
+
 html {
-    scroll-behavior:smooth;
+  scroll-behavior: smooth;
 }
 
 .click-icon {
@@ -42,16 +131,13 @@ html {
 .click-icon:active {
   animation: hand-click 0.2s;
 }
+
 .home-layout {
   display: flex;
   flex-direction: column;
-  gap: 2rem; 
+  gap: 2rem;
 }
-.App {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
+
 main {
   flex: 1;
 }
@@ -70,6 +156,7 @@ main {
     filter: brightness(1);
   }
 }
+
 @keyframes float {
   0% {
     transform: translateY(0) translateX(0);
