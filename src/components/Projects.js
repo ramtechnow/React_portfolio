@@ -121,8 +121,11 @@ export default function Projects() {
             variants={itemVariants}
           >
             Projects
+
+            {/* Underline */}
             <span className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-purple-500 transform translate-y-2"></span>
           </motion.h1>
+
           <motion.p 
             className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl leading-relaxed"
             variants={itemVariants}

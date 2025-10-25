@@ -1,46 +1,76 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-/* App.css */
+
+/* --- GLOBAL PAGE BACKGROUND FIX --- */
+html,
+body,
+#root {
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+  background: linear-gradient(to bottom, #0b1222, #0b1222); /* Uniform background */
+  color: #fff;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* --- MAIN APP CONTAINER --- */
 .App {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background: linear-gradient(to bottom, #0b1222, #0b1222);
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* --- THEME VARIANTS --- */
 .light-mode {
-  background:linear-gradient(to bottom, #1f2937, #374151);
-  color: #000000;
+  background: linear-gradient(to bottom, #1f2937, #374151);
+  color: #000;
 }
 
 .dark-mode {
-  background:linear-gradient(to bottom, #111827, #1f2937);
-  color: #ffffff;
+  background: linear-gradient(to bottom, #0b1222, #0b1222);
+  color: #fff;
 }
 
-/* Ensure the cursor has proper contrast in both modes */
+/* --- CURSOR FIX --- */
 .react-animated-cursor {
   z-index: 9999;
 }
 
-.dark-mode button {
+/* --- BUTTON STYLING --- */
+.btn {
+  background-color: #eff0f3;
+  padding: 0.5rem 1.25rem;
+  font-weight: 700;
+  border-radius: 0.25rem;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  border-width: 2px;
+  border-color: #000;
+}
+
+.dark-mode .btn {
+  background-color: #2d3748;
   color: #fff;
+  border-color: #fff;
 }
 
-.dark-mode .footer {
-  background-color: #f4f0f0;
-  border-top: 1px solid #ec1313;
+.dark-mode .btn:hover {
+  border-color: #8a8a8a;
 }
 
-/* Header styles */
+/* --- HEADERS & FOOTER --- */
 header ul li {
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
+  padding: 0 0.5rem;
 }
 
 .bg-primary {
-  background: #eff0f3;
+  background: #151d2c;
 }
 
 .dark-mode .bg-primary {
@@ -55,6 +85,19 @@ header ul li {
   background: #ed8936;
 }
 
+/* --- FOOTER FIX --- */
+.footer {
+  background-color: #151d2c;
+  color: #ccc;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .footer {
+  background-color: #151d2c;
+  color: #fff;
+}
+
+/* --- MOBILE NAV --- */
 .mobile-nav {
   position: fixed;
   top: 2.5rem;
@@ -75,15 +118,13 @@ header ul li {
   border-bottom-width: 2px;
 }
 
+/* --- PROJECT SECTION --- */
 .project-desc {
   position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  top: 0;
+  inset: 0;
   background-color: #ff8e3c;
   opacity: 0;
-  transition-duration: 500ms;
+  transition: opacity 0.5s ease;
 }
 
 .dark-mode .project-desc {
@@ -94,44 +135,7 @@ header ul li {
   opacity: 1;
 }
 
-.btn {
-  background-color: #eff0f3;
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-  font-weight: 700;
-  border-radius: 0.25rem;
-}
-
-.dark-mode .btn {
-  background-color: #2d3748;
-  color: #fff;
-  border-color: #fff;
-}
-
-.btn:hover {
-  border-width: 2px;
-  border-color: #000;
-}
-
-.dark-mode .btn:hover {
-  border-color: #8a8a8a;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-.click-icon {
-  display: inline-block;
-  cursor: pointer;
-}
-
-.click-icon:active {
-  animation: hand-click 0.2s;
-}
-
+/* --- HOME SECTION LAYOUT --- */
 .home-layout {
   display: flex;
   flex-direction: column;
@@ -140,6 +144,16 @@ html {
 
 main {
   flex: 1;
+}
+
+/* --- CLICK ANIMATION --- */
+.click-icon {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.click-icon:active {
+  animation: hand-click 0.2s;
 }
 
 @keyframes hand-click {
@@ -157,6 +171,18 @@ main {
   }
 }
 
+/* --- THEMES --- */
+.theme-dark {
+  background-color: #0b1222;
+  color: #eee;
+}
+
+.theme-light {
+  background-color: #ffffff;
+  color: #111;
+}
+
+/* --- BACKGROUND PARTICLE/ANIMATION --- */
 @keyframes float {
   0% {
     transform: translateY(0) translateX(0);

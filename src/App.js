@@ -1,74 +1,85 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import './App.css';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import AnimatedCursor from "react-animated-cursor";
-import HomePage from './components/HomePage';
-import Blog from './components/Blog';
+// /D:/copy/React_portfolio/src/App.js
+import { useEffect, useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+// Import your own components here
+import Navbar from "./components/Header";
+import Home from "./components/HomePage";
+import About from "./components/About";
+import Projects from "./components/Projects";
+import Contact from "./components/Contact";
+import Footer from "./components/Footer";
+import Blog from "./components/Blog"
+import "./App.css";
 
 function App() {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDark, setIsDark] = useState(false);
 
+  // Theme detection (runs once on mount)
   useEffect(() => {
-    // Check if user has a dark mode preference
-    const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    setIsDarkMode(isDark);
-    
-    // Disable browser's automatic scroll restoration
-    if ('scrollRestoration' in window.history) {
-      window.history.scrollRestoration = 'manual';
+    if (typeof window === "undefined") return;
+
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+
+    // Initial set
+    setIsDark(mediaQuery.matches);
+
+    // Listener for changes
+    const handleThemeChange = (e) => setIsDark(e.matches);
+
+    if (typeof mediaQuery.addEventListener === "function") {
+      mediaQuery.addEventListener("change", handleThemeChange);
+    } else if (typeof mediaQuery.addListener === "function") {
+      // @ts-ignore -- older Safari uses deprecated addListener
+      mediaQuery.addListener(handleThemeChange);
     }
 
-    // Listen for system dark mode changes
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    const handleChange = (e) => setIsDarkMode(e.matches);
-    mediaQuery.addEventListener('change', handleChange);
-    
-    return () => mediaQuery.removeEventListener('change', handleChange);
+    // Cleanup
+    return () => {
+      if (typeof mediaQuery.removeEventListener === "function") {
+        mediaQuery.removeEventListener("change", handleThemeChange);
+      } else if (typeof mediaQuery.removeListener === "function") {
+        // @ts-ignore -- older Safari uses deprecated removeListener
+        mediaQuery.removeListener(handleThemeChange);
+      }
+    };
   }, []);
 
+  // Scroll restoration (safe client-side)
+  useEffect(() => {
+    if (typeof window !== "undefined" && "scrollRestoration" in window.history) {
+      try {
+        window.history.scrollRestoration = "manual";
+      } catch (err) {
+        console.warn("Could not set scrollRestoration:", err);
+      }
+    }
+  }, []);
+
+  // Optional: automatically scroll to top on route change
+  // (Uncomment if using Router)
+  // useEffect(() => {
+  //   const handleRouteChange = () => window.scrollTo(0, 0);
+  //   window.addEventListener("popstate", handleRouteChange);
+  //   return () => window.removeEventListener("popstate", handleRouteChange);
+  // }, []);
+
   return (
-    <Router>
-      <div className={`App ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
-        <Header />
-        <AnimatedCursor
-          innerSize={8}
-          outerSize={20}
-          color={isDarkMode ? '255, 255, 255' : '0, 0, 0'}
-          outerAlpha={0.2}
-          innerScale={0.7}
-          outerScale={2}
-          clickables={['a', 'button', '.clickable', 'input', 'textarea', 'select']}
-          trailingSpeed={8}
-          hasBlendMode={true}
-          outerStyle={{
-            border: isDarkMode ? '2px solid #fff' : '2px solid #000',
-            mixBlendMode: isDarkMode ? 'difference' : 'normal',
-          }}
-          innerStyle={{
-            backgroundColor: isDarkMode ? '#fff' : '#000',
-            mixBlendMode: isDarkMode ? 'difference' : 'normal',
-          }}
-        />
-        
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/blog" element={<Blog />} />
-          {/* Add a 404 route for unknown paths */}
-          <Route path="*" element={
-            <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <div style={{ textAlign: 'center' }}>
-                <h1 style={{ fontSize: '2rem', fontWeight: 'bold', marginBottom: '1rem' }}>404 - Page Not Found</h1>
-                <p style={{ fontSize: '1.125rem' }}>The page you're looking for doesn't exist.</p>
-              </div>
-            </div>
-          } />
-        </Routes>
-        
+    <div className={`App ${isDark ? "theme-dark" : "theme-light"}`}>
+      <Router>
+        <Navbar />
+        <main>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/blog" element={<Blog />} />
+          </Routes>
+        </main>
         <Footer />
-      </div>
-    </Router>
+      </Router>
+    </div>
   );
 }
 
