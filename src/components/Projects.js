@@ -1,217 +1,267 @@
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
+
 import websiteImg1 from "../assets/ecommerce-website.png";
 import websiteImg2 from "../assets/LILO.png";
 import websiteImg3 from "../assets/project.jpg";
 import websiteImg4 from "../assets/company project.png";
 import websiteImg5 from "../assets/grocery.png";
 import websiteImg6 from "../assets/Weather_app.png";
-import { useEffect } from 'react';
 
 export default function Projects() {
-  const config = {
-    projects: [
-      {
-        image: websiteImg1,
-        title: "E-commerce Website",
-        description: "Company website built with React Bootstrap 5.",
-        link: "https://ecommerce-website-dfd55.web.app/",
-        technologies: ["React", "Bootstrap", "Firebase"]
-      },
-      {
-        image: websiteImg2,
-        title: "LILO Tracker",
-        description: "Login and logout tracker with Python Tkinter and email integration.",
-        link: "https://github.com/ramtechnow/LILO-Tracker",
-        technologies: ["Python", "Tkinter", "Email API"]
-      },
-      {
-        image: websiteImg3,
-        title: "Image Search App",
-        description: "Image search application using Unsplash API.",
-        link: "https://image-search-using-unsplash-api.vercel.app/",
-        technologies: ["React", "Unsplash API", "CSS"]
-      },
-      {
-        image: websiteImg4,
-        title: "Company Website",
-        description: "Client company website with modern design.",
-        link: "https://ramtechnow.github.io/SINX-TECHNOLOGIES/",
-        technologies: ["HTML", "CSS", "JavaScript"]
-      },
-      {
-        image: websiteImg5,
-        title: "Grocery Store",
-        description: "Responsive grocery store webpage built with Bootstrap.",
-        link: "https://ramtechnow.github.io/Grocery_boostrap_webpage/",
-        technologies: ["Bootstrap", "HTML", "CSS"]
-      },
-      {
-        image: websiteImg6,
-        title: "Weather App",
-        description: "Weather application using weather API integration.",
-        link: "https://fir-sample-84c93.web.app/",
-        technologies: ["JavaScript", "Weather API", "CSS"]
-      },
-    ],
-  };
+  const [selectedProject, setSelectedProject] = useState(null);
 
-  // Handle hash navigation for the projects section
+  // Lock background scroll
   useEffect(() => {
-    if (window.location.hash === '#projects') {
-      const element = document.getElementById('projects');
-      if (element) {
-        setTimeout(() => {
-          const headerHeight = document.querySelector('header')?.offsetHeight || 0;
-          const elementPosition = element.offsetTop - headerHeight;
-          
-          window.scrollTo({
-            top: elementPosition,
-            behavior: 'smooth'
-          });
-        }, 100);
-      }
-    }
-  }, []);
+    document.body.style.overflow = selectedProject ? "hidden" : "auto";
+  }, [selectedProject]);
 
-  // Animation variants
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        when: "beforeChildren"
-      }
-    }
-  };
+  const closeModal = () => setSelectedProject(null);
 
-  const itemVariants = {
-    hidden: { y: 40, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: { 
-        duration: 0.6,
-        ease: "easeOut"
-      }
-    }
-  };
+  const projects = [
+    {
+      image: websiteImg1,
+      title: "E-commerce Website",
+      description:
+        "A fully responsive e-commerce platform built with React and Bootstrap.",
+      demo: "https://ecommerce-website-dfd55.web.app/",
+      github: "https://github.com/ramtechnow/ecommerce-website",
+      technologies: ["React", "Bootstrap", "Firebase", "Context API"],
+      challenges:
+        "Implementing complex cart logic and responsive product grids.",
+      solution:
+        "Used Context API and lazy image loading for performance.",
+      features: [
+        "Product Catalog",
+        "Shopping Cart",
+        "User Authentication",
+        "Responsive Design",
+        "Firebase Hosting",
+      ],
+    },
+
+    {
+      image: websiteImg2,
+      title: "LILO Tracker",
+      description:
+        "Python Tkinter desktop application for login/logout attendance tracking.",
+      demo: "https://github.com/ramtechnow/LILO-Tracker",
+      github: "https://github.com/ramtechnow/LILO-Tracker",
+      technologies: ["Python", "Tkinter", "SQLite", "SMTP"],
+      challenges:
+        "System tray reliability and email automation.",
+      solution:
+        "Implemented threading and SQLite storage.",
+      features: [
+        "System Tray Integration",
+        "Automated Email Reports",
+        "Data Export",
+        "Cross-platform",
+      ],
+    },
+
+    {
+      image: websiteImg3,
+      title: "Image Search App",
+      description:
+        "Unsplash API based responsive image search application.",
+      demo: "https://image-search-using-unsplash-api.vercel.app/",
+      github: "https://github.com/ramtechnow/image-search-app",
+      technologies: ["React", "Unsplash API", "Axios", "Tailwind"],
+      challenges: "API rate limiting and infinite scroll optimization.",
+      solution:
+        "Debounced search with lazy loading and virtual scrolling.",
+      features: [
+        "Infinite Scroll",
+        "Search Filters",
+        "High-res Downloads",
+        "Responsive Gallery",
+      ],
+    },
+
+    {
+      image: websiteImg4,
+      title: "Company Website",
+      description:
+        "Corporate website using HTML, CSS, JavaScript and GSAP animations.",
+      demo: "https://ramtechnow.github.io/SINX-TECHNOLOGIES/",
+      github: "https://github.com/ramtechnow/SINX-TECHNOLOGIES",
+      technologies: ["HTML5", "CSS3", "JavaScript", "GSAP"],
+      challenges:
+        "Cross-browser styling and performance friendly animations.",
+      solution:
+        "Used Flexbox, Grid, and optimized animation timelines.",
+      features: [
+        "Responsive Design",
+        "Smooth Animations",
+        "Contact Form",
+        "SEO Optimized",
+      ],
+    },
+
+    {
+      image: websiteImg5,
+      title: "Grocery Store UI",
+      description:
+        "Bootstrap grocery store interface with cart and checkout flow.",
+      demo: "https://ramtechnow.github.io/Grocery_boostrap_webpage/",
+      github: "https://github.com/ramtechnow/Grocery_boostrap_webpage",
+      technologies: ["Bootstrap 5", "JavaScript", "jQuery"],
+      challenges:
+        "Product categorization and accessibility compliance.",
+      solution:
+        "Used Bootstrap grid and ARIA accessibility standards.",
+      features: [
+        "Product Categories",
+        "Shopping Cart",
+        "Checkout Flow",
+        "Accessibility Ready",
+      ],
+    },
+
+    {
+      image: websiteImg6,
+      title: "Weather Dashboard",
+      description:
+        "Real-time weather dashboard using Weather API and Chart.js.",
+      demo: "https://fir-sample-84c93.web.app/",
+      github: "https://github.com/ramtechnow/weather-app",
+      technologies: ["JavaScript", "Weather API", "Chart.js"],
+      challenges:
+        "Handling API failures and creating intuitive charts.",
+      solution:
+        "Implemented caching and geolocation fallback.",
+      features: [
+        "Current Weather",
+        "5-Day Forecast",
+        "Location Detection",
+        "Weather Alerts",
+      ],
+    },
+  ];
 
   return (
-    <section
-      id="projects"
-      className="relative flex flex-col py-20 px-5 justify-center text-black bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-gray-900 dark:to-gray-800 min-h-screen"
-    >
-      {/* Background pattern */}
-      <div className="absolute inset-0 opacity-10 dark:opacity-5">
-        <div className="absolute inset-0 bg-grid-pattern"></div>
+    <section className="py-20 px-6">
+      {/* Grid */}
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {projects.map((project, i) => (
+          <motion.div
+            key={i}
+            whileHover={{ y: -5 }}
+            className="bg-white dark:bg-gray-800 shadow-lg rounded-xl overflow-hidden"
+          >
+            <img
+              src={project.image}
+              className="h-56 w-full object-cover"
+            />
+
+            <div className="p-5">
+              <h3 className="text-xl font-bold mb-3">
+                {project.title}
+              </h3>
+
+              <p className="text-gray-600 dark:text-gray-300 line-clamp-2 mb-4">
+                {project.description}
+              </p>
+
+              <button
+                onClick={() => setSelectedProject(project)}
+                className="w-full bg-blue-600 text-white py-2 rounded-lg"
+              >
+                View Details
+              </button>
+            </div>
+          </motion.div>
+        ))}
       </div>
 
-      <div className="container mx-auto max-w-7xl">
-        {/* Section Header */}
-        <motion.div 
-          className="w-full flex flex-col items-center px-5 py-10 mb-12 text-center"
-          initial="hidden"
-          whileInView="visible"
-          variants={containerVariants}
-          viewport={{ once: true, margin: "-100px" }}
-        >
-          <motion.h1 
-            className="text-5xl font-bold mb-6 text-gray-800 dark:text-white relative inline-block"
-            variants={itemVariants}
-          >
-            Projects
-
-            {/* Underline */}
-            <span className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-purple-500 transform translate-y-2"></span>
-          </motion.h1>
-
-          <motion.p 
-            className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl leading-relaxed"
-            variants={itemVariants}
-          >
-            Here's a collection of my recent work showcasing various technologies and solutions. 
-            Each project represents different challenges and learning experiences.
-          </motion.p>
-        </motion.div>
-
-        {/* Project Cards */}
-        <motion.div 
-          className="w-full px-5"
-          initial="hidden"
-          whileInView="visible"
-          variants={containerVariants}
-          viewport={{ once: true, margin: "-100px" }}
-        >
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {config.projects.map((project, index) => (
+      {/* Modal */}
+      {createPortal(
+        <AnimatePresence>
+          {selectedProject && (
+            <>
               <motion.div
-                key={index}
-                className="relative group bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 dark:border-gray-700"
-                variants={itemVariants}
-                whileHover={{ scale: 1.02 }}
+                className="fixed inset-0 bg-black/70 z-[999]"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={closeModal}
+              />
+
+              <motion.div
+                className="fixed inset-0 z-[1000] flex items-center justify-center p-4"
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.9, opacity: 0 }}
               >
-                <div className="h-48 overflow-hidden">
-                  <img
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    src={project.image}
-                    alt={`${project.title} screenshot`}
-                  />
-                </div>
-                
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-2">
-                    {project.title}
-                  </h3>
-                  <p className="text-gray-600 dark:text-gray-300 mb-4">
-                    {project.description}
-                  </p>
-                  
-                  <div className="flex flex-wrap gap-2 mb-5">
-                    {project.technologies.map((tech, i) => (
-                      <span 
-                        key={i}
-                        className="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-100 text-sm rounded-full"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                  
-                  <motion.a
-                    className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg font-medium hover:opacity-90 transition-all duration-300 shadow-md hover:shadow-lg"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href={project.link}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                <div
+                  className="bg-white dark:bg-gray-800 max-w-4xl w-full rounded-2xl shadow-2xl max-h-[90vh] overflow-y-auto relative"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <button
+                    onClick={closeModal}
+                    className="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded"
                   >
-                    View Project
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                    </svg>
-                  </motion.a>
+                    ✕
+                  </button>
+
+                  <img
+                    src={selectedProject.image}
+                    className="w-full h-60 object-cover"
+                  />
+
+                  <div className="p-6">
+                    <h2 className="text-2xl font-bold mb-4">
+                      {selectedProject.title}
+                    </h2>
+
+                    <p className="mb-4 text-gray-600 dark:text-gray-300">
+                      {selectedProject.description}
+                    </p>
+
+                    <h3 className="font-semibold mb-2">Features:</h3>
+                    <ul className="list-disc pl-6 mb-4">
+                      {selectedProject.features.map((f, i) => (
+                        <li key={i}>{f}</li>
+                      ))}
+                    </ul>
+
+                    <h3 className="font-semibold mb-2">Challenges:</h3>
+                    <p className="mb-4">
+                      {selectedProject.challenges}
+                    </p>
+
+                    <h3 className="font-semibold mb-2">Solution:</h3>
+                    <p className="mb-6">
+                      {selectedProject.solution}
+                    </p>
+
+                    <div className="flex gap-4">
+                      <a
+                        href={selectedProject.demo}
+                        target="_blank"
+                        className="bg-blue-600 text-white px-5 py-2 rounded-lg"
+                      >
+                        Live Demo
+                      </a>
+
+                      <a
+                        href={selectedProject.github}
+                        target="_blank"
+                        className="border px-5 py-2 rounded-lg"
+                      >
+                        GitHub
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </motion.div>
-            ))}
-          </div>
-        </motion.div>
-      </div>
-
-      {/* Custom CSS for background pattern */}
-      <style jsx>{`
-        .bg-grid-pattern {
-          background-image: 
-            linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
-          background-size: 20px 20px;
-        }
-        .dark .bg-grid-pattern {
-          background-image: 
-            linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-        }
-      `}</style>
+            </>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
     </section>
   );
 }
