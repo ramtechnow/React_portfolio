@@ -7,15 +7,15 @@ export default function Certifications() {
       title: "Complete Python Developer Course",
       issuer: "Udemy",
       description: "Comprehensive training in Python development, covering object-oriented programming, data structures, functional concepts, and automation script building.",
-      verifyUrl: "https://www.udemy.com/",
-      date: "2023",
+      verifyUrl: "https://www.udemy.com/certificate/UC-274ccbdf-8aea-4c64-bee0-fff204dfa59b/",
+      date: "2025",
     },
     {
       title: "Full-stack Web Development (React & MongoDB)",
       issuer: "Code99 IT Academy",
       description: "Vigorous professional training program on full-stack web applications development using React JS, Node.js, Express, MongoDB, and Tailwind CSS.",
-      verifyUrl: "https://github.com/ramtechnow",
-      date: "2024",
+      verifyUrl: "https://drive.google.com/file/d/148nb3uA_vmFVlksUzaVXBzf9OiGjSzNt/view",
+      date: "2025",
     },
   ];
 

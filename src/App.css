@@ -28,7 +28,22 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* --- CURSOR FIX --- */
+/* --- CUSTOM CURSOR --- */
+html,
+body {
+  cursor: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='32'%20height='32'%20viewBox='0%200%2032%2032'%3E%3Cdefs%3E%3Cfilter%20id='shadow'%20x='-20%25'%20y='-20%25'%20width='140%25'%20height='140%25'%3E%3CfeDropShadow%20dx='1'%20dy='1'%20stdDeviation='1.2'%20flood-opacity='0.5'/%3E%3C/filter%3E%3C/defs%3E%3Cpath%20d='M5.5%203.21V28l7.29-7.29%205.86%2011.72%204.14-2.07-5.86-11.72H25.5Z'%20fill='white'%20stroke='black'%20stroke-width='1.5'%20stroke-linejoin='round'%20filter='url(%23shadow)'/%3E%3C/svg%3E") 5 3, auto;
+}
+
+a,
+button,
+[role="button"],
+input[type="submit"],
+input[type="button"],
+.cursor-pointer,
+.click-icon {
+  cursor: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='32'%20height='32'%20viewBox='0%200%2032%2032'%3E%3Cdefs%3E%3Cfilter%20id='shadow'%20x='-20%25'%20y='-20%25'%20width='140%25'%20height='140%25'%3E%3CfeDropShadow%20dx='1'%20dy='1'%20stdDeviation='1.2'%20flood-opacity='0.5'/%3E%3C/filter%3E%3C/defs%3E%3Cpath%20d='M5.5%203.21V28l7.29-7.29%205.86%2011.72%204.14-2.07-5.86-11.72H25.5Z'%20fill='white'%20stroke='black'%20stroke-width='1.5'%20stroke-linejoin='round'%20filter='url(%23shadow)'/%3E%3C/svg%3E") 5 3, pointer !important;
+}
+
 .react-animated-cursor {
   z-index: 9999;
 }

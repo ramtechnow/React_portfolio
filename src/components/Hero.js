@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
-import HeroImg from '../assets/picofme.png';
+import HeroImg from '../assets/profile_photo.png';
 import { AiOutlineGithub, AiOutlineLinkedin, AiOutlineWhatsApp, AiOutlineMail } from "react-icons/ai";
 
 const roles = ["Production Analyst", "Technical Support Associate", "Full-stack Developer"];

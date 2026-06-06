@@ -183,7 +183,7 @@ export default function Header({ isDark, toggleTheme }) {
                 }}
                 aria-label="Home"
               >
-                shrirammg.dev
+                Shriram M G
                 <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 dark:from-blue-400 dark:to-purple-400 transform origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100" />
               </Link>
             </motion.div>
