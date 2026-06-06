@@ -42,9 +42,9 @@ export default function Hero({ scrollTo }) {
     subtitle: "I'm a Production Analyst and Tech Support Associate",
     description: (
       <>
-        Dedicated <span className="text-green-500 dark:text-green-450 font-semibold">Production Analyst</span> and <span className="text-green-500 dark:text-green-450 font-semibold">Technical Support Associate</span> with hands-on experience in building web applications and automating workflows.
+        Dedicated <span className="text-blue-600 dark:text-blue-400 font-semibold">Production Analyst</span> and <span className="text-blue-600 dark:text-blue-400 font-semibold">Technical Support Associate</span> with hands-on experience in building web applications and automating workflows.
         <br /><br />
-        Proven track record at TCS in automating testing workflows using <span className="text-green-500 dark:text-green-450 font-semibold">Python & Selenium</span>, and managing Openreach ServiceNow incidents at Tech Mahindra.
+        Proven track record at TCS in automating testing workflows using <span className="text-[#7c3aed] dark:text-[#a78bfa] font-semibold">Python & Selenium</span>, and managing Openreach ServiceNow incidents at Tech Mahindra.
       </>
     ),
     social: {

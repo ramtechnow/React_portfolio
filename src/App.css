@@ -166,15 +166,15 @@ body.theme-light {
   mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 60%, transparent 100%);
 }
 
-/* Dark Theme Pattern (Cyberpunk Animated Grid) */
+/* Dark Theme Pattern (Deep Navy & Violet Grid) */
 .theme-dark .portfolio-bg-pattern {
-  background-color: #050505;
+  background-color: #0b1222;
   background-image: 
-    radial-gradient(circle at center, transparent 30%, #000 90%),
-    linear-gradient(rgba(3, 233, 244, 0.1) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(3, 233, 244, 0.1) 1px, transparent 1px),
-    linear-gradient(rgba(217, 3, 244, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(217, 3, 244, 0.05) 1px, transparent 1px);
+    radial-gradient(circle at center, transparent 30%, #05080f 90%),
+    linear-gradient(rgba(124, 58, 237, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(124, 58, 237, 0.08) 1px, transparent 1px),
+    linear-gradient(rgba(59, 130, 246, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59, 130, 246, 0.04) 1px, transparent 1px);
   background-size:
     100% 100%,
     60px 60px,
