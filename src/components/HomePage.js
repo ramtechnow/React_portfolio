@@ -42,7 +42,7 @@ export default function HomePage() {
   };
 
   return (
-    <div className="home-layout relative w-full bg-white dark:bg-[#0b1222] text-gray-900 dark:text-gray-100">
+    <div className="home-layout relative w-full bg-transparent text-gray-900 dark:text-gray-100">
 
       {/* Scroll Progress Bar */}
       <motion.div

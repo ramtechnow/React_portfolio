@@ -99,6 +99,7 @@ function App() {
   return (
     <div className={`App ${isDark ? "theme-dark" : "theme-light"}`}>
       <Router>
+        <div className="portfolio-bg-pattern" />
         <Navbar isDark={isDark} toggleTheme={toggleTheme} />
         <main>
           <Routes>
