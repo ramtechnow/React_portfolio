@@ -1,16 +1,24 @@
 import { motion } from "framer-motion";
 
-export default function Education() {
+export default function Experience() {
   const timelineData = [
     {
-      type: "education",
-      title: "B.Sc. in Computer Science",
-      subtitle: "Salem Sowdeswari College — Salem, Tamil Nadu",
-      period: "Jun 2019 - Jul 2022",
-      description: "Graduated with B.Sc. in Computer Science, securing a CGPA of 7.2. Acquired foundations in software engineering, database management, and programming languages.",
-      tag: "B.Sc. Degree",
-      tagColor: "bg-amber-50 dark:bg-amber-950/40 text-amber-700 dark:text-amber-300 border-amber-100 dark:border-amber-900/30",
-      icon: "🎓",
+      title: "Technical Support Associate (Incident Management)",
+      subtitle: "Tech Mahindra — Chennai",
+      period: "Sep 2025 - Present",
+      description: "First point of contact for UK-based Openreach employees. Managed ServiceNow ticketing for application crashes, login failures, VPN disconnections, and configurations with a 98% first-contact resolution rate and 100% SLA compliance. Created knowledge base articles that reduced repeat tickets by 15%.",
+      tag: "Incident Management",
+      tagColor: "bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border-emerald-100 dark:border-emerald-900/30",
+      icon: "💼",
+    },
+    {
+      title: "Production Analyst",
+      subtitle: "Tata Consultancy Services (TCS) — Chennai, Tamil Nadu",
+      period: "April 2023 - July 2025",
+      description: "Developed and maintained automated test scripts for the US Citi Bank (NAM Smart Automation) project utilizing Selenium WebDriver with Python. Achieved a 30% reduction in testing cycle time and managed defect tracking using Jira.",
+      tag: "Test Automation",
+      tagColor: "bg-indigo-50 dark:bg-indigo-950/40 text-indigo-700 dark:text-indigo-300 border-indigo-100 dark:border-indigo-900/30",
+      icon: "💼",
     }
   ];
 
@@ -33,7 +41,7 @@ export default function Education() {
   };
 
   return (
-    <section id="education" className="py-20 px-6 bg-transparent overflow-hidden">
+    <section id="experience" className="py-20 px-6 bg-transparent overflow-hidden">
       <div className="max-w-6xl mx-auto relative">
         <div className="text-center mb-16">
           <motion.h2
@@ -43,10 +51,10 @@ export default function Education() {
             transition={{ duration: 0.6 }}
             className="text-4xl md:text-5xl font-bold text-[#7c3aed] dark:text-[#a78bfa] pb-2 border-b-4 border-[#7c3aed] w-fit mx-auto"
           >
-            Education
+            Professional Experience
           </motion.h2>
           <p className="text-gray-600 dark:text-gray-400 mt-4 max-w-lg mx-auto text-sm md:text-base">
-            My academic foundations.
+            My corporate journey and key technical contributions.
           </p>
         </div>
 

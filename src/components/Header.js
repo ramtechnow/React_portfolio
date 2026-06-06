@@ -14,11 +14,11 @@ export default function Header({ isDark, toggleTheme }) {
 
   const navItems = [
     { name: 'Home', href: '#home', underlineColor: 'bg-[#7c3aed]' },
+    { name: 'Experience', href: '#experience', underlineColor: 'bg-[#7c3aed]' },
     { name: 'Education', href: '#education', underlineColor: 'bg-[#7c3aed]' },
     { name: 'Skills', href: '#skills', underlineColor: 'bg-[#7c3aed]' },
     { name: 'Projects', href: '#projects', underlineColor: 'bg-[#7c3aed]' },
     { name: 'Certifications', href: '#certifications', underlineColor: 'bg-[#7c3aed]' },
-    { name: 'Contact', href: '#contact', underlineColor: 'bg-[#7c3aed]' },
   ];
 
   const headerBackground = scrolled

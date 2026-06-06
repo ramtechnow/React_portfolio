@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 import Hero from "./Hero";
+import Experience from "./Experience";
 import Education from "./Education";
 import About from "./About";
 import Projects from "./Projects";
@@ -18,6 +19,7 @@ export default function HomePage() {
   // Section refs matching the new layout
   const refs = {
     home: useRef(null),
+    experience: useRef(null),
     education: useRef(null),
     skills: useRef(null),
     projects: useRef(null),
@@ -57,6 +59,19 @@ export default function HomePage() {
         <section id="home" ref={refs.home} className="min-h-screen relative">
           <Hero scrollTo={handleScrollTo} />
         </section>
+
+        {/* EXPERIENCE */}
+        <motion.section
+          id="experience"
+          ref={refs.experience}
+          className="min-h-screen py-0"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={sectionVariants}
+        >
+          <Experience />
+        </motion.section>
 
         {/* EDUCATION */}
         <motion.section
