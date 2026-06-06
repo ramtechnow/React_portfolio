@@ -13,11 +13,11 @@ import {
 const About = () => {
   const aboutContent = {
     introduction:
-      'Hi, I’m Shriram, a dedicated Technical Support Associate and former Production Analyst with hands-on experience in building web applications and automating workflows. I specialize in creating efficient, automated solutions and providing outstanding incident management.',
+      'Hi, I’m Shriram, a dedicated Full-stack Developer with hands-on experience in building premium web applications, designing responsive user interfaces, and automating backend workflows. I specialize in creating robust, end-to-end digital solutions that deliver seamless user experiences.',
     frontendExpertise:
-      'I have strong expertise in frontend technologies like React JS, Vite, and Tailwind CSS, building responsive, scalable UIs. I also manage database systems including MongoDB and MySQL to back full-featured web applications.',
+      'I have strong expertise in frontend technologies like React JS, Vite, and Tailwind CSS to build highly responsive, scalable UIs. I couple this with database systems like MongoDB and MySQL to construct full-featured, secure web applications.',
     automationSkills:
-      'With automated testing experience at TCS using Selenium and Python, I have a proven record of improving testing cycles. Currently, at Tech Mahindra, I resolve ServiceNow incidents and manage systems to achieve 100% SLA compliance.'
+      'I leverage Python and modern scripting to automate complex processes and write high-efficiency backend logic. Additionally, I integrate cloud services like AWS (S3, EC2, Lambda) and modern developer tooling (GitHub) to build, deploy, and maintain robust production applications.'
   };
 
   const skillCategories = [

@@ -3,7 +3,7 @@ import { useRef, useState, useEffect } from 'react';
 import HeroImg from '../assets/profile_photo.png';
 import { AiOutlineGithub, AiOutlineLinkedin, AiOutlineWhatsApp, AiOutlineMail } from "react-icons/ai";
 
-const roles = ["Production Analyst", "Technical Support Associate", "Full-stack Developer"];
+const roles = ["Full-stack Developer", "React Developer", "Software Engineer"];
 
 export default function Hero({ scrollTo }) {
   const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
@@ -39,12 +39,12 @@ export default function Hero({ scrollTo }) {
   }, [currentText, isDeleting, currentRoleIndex, typingSpeed]);
 
   const config = {
-    subtitle: "I'm a Production Analyst and Tech Support Associate",
+    subtitle: "I'm a Full-stack Developer",
     description: (
       <>
-        Dedicated <span className="text-blue-600 dark:text-blue-400 font-semibold">Production Analyst</span> and <span className="text-blue-600 dark:text-blue-400 font-semibold">Technical Support Associate</span> with hands-on experience in building web applications and automating workflows.
+        Specializing in building modern, premium web applications using <span className="text-blue-600 dark:text-blue-400 font-semibold">React & Tailwind CSS</span> and designing robust, scalable backend systems.
         <br /><br />
-        Proven track record at TCS in automating testing workflows using <span className="text-[#7c3aed] dark:text-[#a78bfa] font-semibold">Python & Selenium</span>, and managing Openreach ServiceNow incidents at Tech Mahindra.
+        Passionate about crafting pixel-perfect, responsive user interfaces, writing clean, optimized code, and developing end-to-end solutions that elevate digital experiences.
       </>
     ),
     social: {
