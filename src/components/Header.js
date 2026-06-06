@@ -248,31 +248,31 @@ export default function Header({ isDark, toggleTheme }) {
               </motion.button>
             </div>
           </motion.div>
-
-          {/* Mobile Menu */}
-          <AnimatePresence>
-            {toggleMenu && (
-              <motion.div
-                ref={mobileMenuRef}
-                initial="hidden"
-                animate="visible"
-                exit="exit"
-                variants={mobileMenuVariants}
-                className={`md:hidden fixed top-16 left-0 right-0 bottom-0 ${mobileMenuBackground} shadow-lg z-40 border-t border-gray-200 dark:border-gray-700`}
-                aria-label="Mobile menu"
-              >
-                <motion.ul className="flex flex-col px-4 py-6 space-y-4 h-full overflow-y-auto" variants={containerVariants} initial="hidden" animate="visible">
-                  {navItems.map((item, index) => (
-                    <motion.li key={item.name} variants={itemVariants} custom={index} className="border-b border-gray-200 dark:border-gray-700 last:border-b-0 pb-4 last:pb-0">
-                      <NavLinkComponent item={item} isMobile />
-                    </motion.li>
-                  ))}
-                </motion.ul>
-              </motion.div>
-            )}
-          </AnimatePresence>
         </div>
       </header>
+
+      {/* Mobile Menu outside <header> to prevent backdrop-filter containing block behavior */}
+      <AnimatePresence>
+        {toggleMenu && (
+          <motion.div
+            ref={mobileMenuRef}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            variants={mobileMenuVariants}
+            className={`md:hidden fixed top-16 left-0 right-0 bottom-0 ${mobileMenuBackground} shadow-lg z-40 border-t border-gray-200 dark:border-gray-700`}
+            aria-label="Mobile menu"
+          >
+            <motion.ul className="flex flex-col px-4 py-6 space-y-4 h-full overflow-y-auto" variants={containerVariants} initial="hidden" animate="visible">
+              {navItems.map((item, index) => (
+                <motion.li key={item.name} variants={itemVariants} custom={index} className="border-b border-gray-200 dark:border-gray-700 last:border-b-0 pb-4 last:pb-0">
+                  <NavLinkComponent item={item} isMobile />
+                </motion.li>
+              ))}
+            </motion.ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Spacer */}
       <div className="h-16 md:h-20"></div>
