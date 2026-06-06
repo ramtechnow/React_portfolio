@@ -22,7 +22,7 @@ export default function Footer() {
 
   return (
     <motion.footer
-      className="bg-primary text-white py-8 px-4"
+      className="bg-white dark:bg-[#0b1222] border-t border-slate-100 dark:border-slate-800/80 text-gray-750 dark:text-gray-300 py-8 px-4"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
@@ -44,7 +44,7 @@ export default function Footer() {
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white hover:text-accent transition-colors duration-300"
+                className="text-gray-700 dark:text-gray-300 hover:text-[#7c3aed] dark:hover:text-[#a78bfa] transition-colors duration-300"
                 whileHover={{ y: -3 }}
                 aria-label={link.label}
               >
@@ -56,7 +56,7 @@ export default function Footer() {
 
         {/* --- Copyright --- */}
         <motion.p
-          className="text-sm md:text-base text-gray-300"
+          className="text-sm md:text-base text-gray-500 dark:text-gray-400"
           initial={{ y: 20, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.4 }}
@@ -68,21 +68,21 @@ export default function Footer() {
         {/* --- Optional Footer Links --- */}
         <section aria-label="Footer Links">
           <motion.div
-            className="flex justify-center space-x-4 text-xs md:text-sm text-gray-400"
+            className="flex justify-center space-x-4 text-xs md:text-sm text-gray-400 dark:text-gray-500"
             initial={{ y: 20, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.6 }}
             viewport={{ once: true }}
           >
             <button
-              className="hover:text-accent transition-colors"
+              className="hover:text-[#7c3aed] dark:hover:text-[#a78bfa] transition-colors"
               onClick={() => console.log("Privacy Policy clicked")}
             >
               Privacy Policy
             </button>
             <span>•</span>
             <button
-              className="hover:text-accent transition-colors"
+              className="hover:text-[#7c3aed] dark:hover:text-[#a78bfa] transition-colors"
               onClick={() => console.log("Terms of Service clicked")}
             >
               Terms of Service

@@ -3,7 +3,7 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
-export default function Header() {
+export default function Header({ isDark, toggleTheme }) {
   const [toggleMenu, setToggleMenu] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
@@ -13,18 +13,18 @@ export default function Header() {
   const scrollTimeoutRef = useRef(null);
 
   const navItems = [
-    { name: 'Home', href: '#home', underlineColor: 'bg-blue-500' },
-    { name: 'About', href: '#about', underlineColor: 'bg-green-500' },
-    { name: 'Projects', href: '#projects', underlineColor: 'bg-purple-500' },
-    { name: 'Resume', href: '#resume', underlineColor: 'bg-pink-500' },
-    { name: 'Contact', href: '#contact', underlineColor: 'bg-red-500' },
-    { name: 'Blog', href: '/blog', underlineColor: 'bg-indigo-500' },
+    { name: 'Home', href: '#home', underlineColor: 'bg-[#7c3aed]' },
+    { name: 'Education', href: '#education', underlineColor: 'bg-[#7c3aed]' },
+    { name: 'Skills', href: '#skills', underlineColor: 'bg-[#7c3aed]' },
+    { name: 'Projects', href: '#projects', underlineColor: 'bg-[#7c3aed]' },
+    { name: 'Certifications', href: '#certifications', underlineColor: 'bg-[#7c3aed]' },
+    { name: 'Contact', href: '#contact', underlineColor: 'bg-[#7c3aed]' },
   ];
 
   const headerBackground = scrolled
-    ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm shadow-lg'
-    : 'bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm';
-  const mobileMenuBackground = 'bg-white dark:bg-gray-900';
+    ? 'bg-white/95 dark:bg-[#0b1222]/95 backdrop-blur-sm shadow-lg'
+    : 'bg-white/80 dark:bg-[#0b1222]/80 backdrop-blur-sm';
+  const mobileMenuBackground = 'bg-white dark:bg-[#0b1222]';
 
   // Scroll detection for header
   useEffect(() => {
@@ -123,10 +123,10 @@ export default function Header() {
         : 'py-2 px-1'
     } ${isMobile
       ? isActive
-        ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30'
+        ? 'text-[#7c3aed] dark:text-[#a78bfa] bg-purple-50 dark:bg-purple-900/30'
         : 'text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800'
       : isActive
-        ? 'text-blue-600 dark:text-blue-400'
+        ? 'text-[#7c3aed] dark:text-[#a78bfa]'
         : 'text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white'
     }`;
 
@@ -183,34 +183,70 @@ export default function Header() {
                 }}
                 aria-label="Home"
               >
-                Shriram MG
+                shrirammg.dev
                 <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 dark:from-blue-400 dark:to-purple-400 transform origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100" />
               </Link>
             </motion.div>
 
             {/* Desktop Nav */}
-            <nav className="hidden md:block" aria-label="Main navigation">
-              <motion.ul className="flex gap-6" variants={containerVariants} initial="hidden" animate="visible">
-                {navItems.map((item, index) => (
-                  <motion.li key={item.name} variants={itemVariants} custom={index}>
-                    <NavLinkComponent item={item} />
-                  </motion.li>
-                ))}
-              </motion.ul>
-            </nav>
+            <div className="hidden md:flex items-center gap-6">
+              <nav aria-label="Main navigation">
+                <motion.ul className="flex gap-6" variants={containerVariants} initial="hidden" animate="visible">
+                  {navItems.map((item, index) => (
+                    <motion.li key={item.name} variants={itemVariants} custom={index}>
+                      <NavLinkComponent item={item} />
+                    </motion.li>
+                  ))}
+                </motion.ul>
+              </nav>
 
-            {/* Mobile Menu Button */}
-            <motion.button
-              onClick={() => setToggleMenu(!toggleMenu)}
-              className="md:hidden text-gray-900 dark:text-white p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              aria-label={toggleMenu ? "Close menu" : "Open menu"}
-              aria-expanded={toggleMenu}
-              variants={itemVariants}
-            >
-              {toggleMenu ? <XMarkIcon className="h-7 w-7" /> : <Bars3Icon className="h-7 w-7" />}
-            </motion.button>
+              {/* Theme Toggle Slider */}
+              <motion.button
+                onClick={toggleTheme}
+                className="relative w-14 h-8 flex items-center bg-gray-200 dark:bg-[#7c3aed] rounded-full p-1 cursor-pointer transition-colors duration-300 focus:outline-none"
+                aria-label="Toggle Theme"
+                variants={itemVariants}
+              >
+                <motion.div
+                  className="bg-white w-6 h-6 rounded-full shadow-md flex items-center justify-center text-xs"
+                  layout
+                  transition={{ type: "spring", stiffness: 700, damping: 30 }}
+                  animate={{ x: isDark ? 24 : 0 }}
+                >
+                  {isDark ? "🌙" : "☀️"}
+                </motion.div>
+              </motion.button>
+            </div>
+
+            {/* Mobile Theme Toggle & Menu Button */}
+            <div className="flex md:hidden items-center gap-4">
+              <button
+                onClick={toggleTheme}
+                className="relative w-12 h-7 flex items-center bg-gray-200 dark:bg-[#7c3aed] rounded-full p-0.5 cursor-pointer transition-colors duration-300 focus:outline-none"
+                aria-label="Toggle Theme"
+              >
+                <motion.div
+                  className="bg-white w-6 h-6 rounded-full shadow-md flex items-center justify-center text-xs"
+                  layout
+                  transition={{ type: "spring", stiffness: 700, damping: 30 }}
+                  animate={{ x: isDark ? 20 : 0 }}
+                >
+                  {isDark ? "🌙" : "☀️"}
+                </motion.div>
+              </button>
+
+              <motion.button
+                onClick={() => setToggleMenu(!toggleMenu)}
+                className="text-gray-900 dark:text-white p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                aria-label={toggleMenu ? "Close menu" : "Open menu"}
+                aria-expanded={toggleMenu}
+                variants={itemVariants}
+              >
+                {toggleMenu ? <XMarkIcon className="h-7 w-7" /> : <Bars3Icon className="h-7 w-7" />}
+              </motion.button>
+            </div>
           </motion.div>
 
           {/* Mobile Menu */}

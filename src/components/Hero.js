@@ -1,26 +1,74 @@
 import { motion } from 'framer-motion';
-import { useRef } from 'react';
-import HeroImg from '../assets/profile.svg';
-import { AiOutlineGithub, AiOutlineLinkedin, AiOutlineWhatsApp, AiOutlineDownload } from "react-icons/ai";
+import { useRef, useState, useEffect } from 'react';
+import HeroImg from '../assets/picofme.png';
+import { AiOutlineGithub, AiOutlineLinkedin, AiOutlineWhatsApp, AiOutlineMail } from "react-icons/ai";
 
-export default function Hero() {
+const roles = ["Production Analyst", "Technical Support Associate", "Full-stack Developer"];
+
+export default function Hero({ scrollTo }) {
+  const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
+  const [currentText, setCurrentText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [typingSpeed, setTypingSpeed] = useState(150);
+
+  useEffect(() => {
+    let timer;
+    const handleType = () => {
+      const fullText = roles[currentRoleIndex];
+      if (!isDeleting) {
+        setCurrentText(fullText.substring(0, currentText.length + 1));
+        setTypingSpeed(100);
+        if (currentText === fullText) {
+          timer = setTimeout(() => setIsDeleting(true), 1500);
+          return;
+        }
+      } else {
+        setCurrentText(fullText.substring(0, currentText.length - 1));
+        setTypingSpeed(50);
+        if (currentText === "") {
+          setIsDeleting(false);
+          setCurrentRoleIndex((prev) => (prev + 1) % roles.length);
+          return;
+        }
+      }
+      timer = setTimeout(handleType, typingSpeed);
+    };
+
+    timer = setTimeout(handleType, typingSpeed);
+    return () => clearTimeout(timer);
+  }, [currentText, isDeleting, currentRoleIndex, typingSpeed]);
+
   const config = {
-    subtitle: "I'm a Full-stack Developer and Designer",
-    description: "Crafting beautiful, functional digital experiences with modern technologies. Passionate about creating solutions that make a difference.",
+    subtitle: "I'm a Production Analyst and Tech Support Associate",
+    description: (
+      <>
+        Dedicated <span className="text-green-500 dark:text-green-450 font-semibold">Production Analyst</span> and <span className="text-green-500 dark:text-green-450 font-semibold">Technical Support Associate</span> with hands-on experience in building web applications and automating workflows.
+        <br /><br />
+        Proven track record at TCS in automating testing workflows using <span className="text-green-500 dark:text-green-450 font-semibold">Python & Selenium</span>, and managing Openreach ServiceNow incidents at Tech Mahindra.
+      </>
+    ),
     social: {
-      whatsapp: 'https://wa.me/919080339752/',
       github: 'https://github.com/ramtechnow',
       linkedin: 'https://www.linkedin.com/in/shriram-m-g-387a59241/',
-    },
-    cta: {
-      resume: 'https://oto.lv.tab.digital/s/dB9gBTWdyiPmXMp/download/ramtechnow@gmail.com.pdf',
-      contact: '#contact'
+      email: 'mailto:ramtechnow@gmail.com',
+      whatsapp: 'https://wa.me/919080339752/',
     }
   };
 
   const sectionRef = useRef(null);
 
-  // Variants
+  // Local fallback scroll handler if prop not passed
+  const handleScroll = (id) => {
+    if (scrollTo) {
+      scrollTo(id);
+    } else {
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: { 
@@ -33,7 +81,7 @@ export default function Hero() {
 
   const BackgroundElements = () => (
     <>
-      <div className="absolute top-10 right-10 w-40 h-40 rounded-full bg-pink-200/30 dark:bg-pink-900/20 blur-3xl -z-10" aria-hidden="true"></div>
+      <div className="absolute top-10 right-10 w-40 h-40 rounded-full bg-indigo-200/30 dark:bg-indigo-900/20 blur-3xl -z-10" aria-hidden="true"></div>
       <div className="absolute bottom-10 left-10 w-48 h-48 rounded-full bg-blue-200/30 dark:bg-blue-900/20 blur-3xl -z-10" aria-hidden="true"></div>
       <div className="absolute top-1/2 left-1/4 w-32 h-32 rounded-full bg-purple-200/20 dark:bg-purple-900/20 blur-3xl -z-10" aria-hidden="true"></div>
     </>
@@ -43,12 +91,11 @@ export default function Hero() {
     <section 
       id="home" 
       ref={sectionRef}
-      className="relative bg-gradient-to-br from-pink-50 to-blue-50 dark:from-gray-900 dark:to-gray-800 flex items-center justify-center px-5 py-20 md:py-32 overflow-hidden min-h-screen"
+      className="relative bg-transparent flex items-center justify-center px-5 py-20 md:py-32 overflow-hidden min-h-screen"
     >
       <BackgroundElements />
 
       <div className="container mx-auto max-w-6xl flex md:flex-row flex-col items-center justify-between relative z-10 gap-10 lg:gap-16">
-        {/* Text Content */}
         <motion.div
           className="md:w-1/2 flex flex-col"
           variants={containerVariants}
@@ -57,88 +104,80 @@ export default function Hero() {
           viewport={{ once: true, amount: 0.3 }}
         >
           <motion.h1 className="text-gray-900 dark:text-white text-5xl md:text-6xl lg:text-7xl font-bold leading-tight md:leading-snug" variants={itemVariants}>
-            Hi,<br />I'm <span className="text-[#d9376e]">M G</span> Shriram
+            Hi, I'm <br />
+            <span className="text-[#ef4444]">Shriram</span>{" "}
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#7c3aed] to-[#3b82f6] dark:from-[#a78bfa] dark:to-[#60a5fa]">
+              M G
+            </span>
           </motion.h1>
 
-          <motion.p className="text-gray-700 dark:text-gray-300 text-xl md:text-2xl mt-4 font-medium" variants={itemVariants}>
-            {config.subtitle}
+          <motion.p className="text-[#7c3aed] dark:text-[#a78bfa] text-xl md:text-2xl mt-4 font-semibold min-h-[40px]" variants={itemVariants}>
+            {currentText}
+            <span className="animate-pulse border-r-2 border-[#7c3aed] dark:border-[#a78bfa] ml-1">&nbsp;</span>
           </motion.p>
 
-          <motion.p className="text-gray-600 dark:text-gray-400 text-lg md:text-xl mt-4 max-w-lg leading-relaxed" variants={itemVariants}>
+          <motion.div className="text-gray-650 dark:text-gray-400 text-lg md:text-xl mt-4 max-w-lg leading-relaxed" variants={itemVariants}>
             {config.description}
-          </motion.p>
+          </motion.div>
 
-          {/* Social Icons */}
           <motion.div className="flex py-6 md:py-10 gap-5" variants={itemVariants}>
             {Object.entries(config.social).map(([key, link]) => {
-              const Icon = key === 'github' ? AiOutlineGithub : key === 'linkedin' ? AiOutlineLinkedin : AiOutlineWhatsApp;
+              const Icon = key === 'github' ? AiOutlineGithub : key === 'linkedin' ? AiOutlineLinkedin : key === 'email' ? AiOutlineMail : AiOutlineWhatsApp;
               return (
                 <motion.a 
                   key={key} 
                   href={link} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-gray-700 dark:text-gray-300 hover:text-[#d9376e] transition-colors duration-300"
-                  whileHover={{ scale: 1.1 }}
+                  className="w-11 h-11 bg-white text-black hover:text-[#7c3aed] rounded-xl flex items-center justify-center shadow-md border border-gray-200"
+                  whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <Icon size={32} className="w-8 h-8 md:w-10 md:h-10" />
+                  <Icon size={22} />
                 </motion.a>
               );
             })}
           </motion.div>
 
-          {/* CTA Buttons */}
           <motion.div className="flex flex-col sm:flex-row gap-4" variants={itemVariants}>
             <motion.a
-              href={config.cta.resume} 
+              href="https://oto.lv.tab.digital/s/dB9gBTWdyiPmXMp/download/ramtechnow@gmail.com.pdf"
               download
               target="_blank"
-              className="px-5 py-2.5 md:px-6 md:py-3 bg-gradient-to-r from-[#d9376e] to-[#c12a5f] text-white rounded-lg font-medium flex items-center justify-center gap-2 text-sm md:text-base shadow-md hover:shadow-lg transition-all duration-300"
+              className="px-5 py-2.5 md:px-6 md:py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium flex items-center justify-center gap-2 text-sm md:text-base shadow-md hover:shadow-lg transition-all duration-300"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <AiOutlineDownload className="text-lg" /> Download Resume
+              <span>⬇</span> Download Resume
             </motion.a>
-            <motion.a
-              href={config.cta.contact}
-              className="px-5 py-2.5 md:px-6 md:py-3 border-2 border-[#d9376e] text-[#d9376e] dark:text-[#e64c83] rounded-lg font-medium text-center transition-all duration-300 hover:bg-[#d9376e] hover:text-white dark:hover:text-white shadow-md hover:shadow-lg"
+            <motion.button
+              onClick={() => handleScroll('contact')}
+              className="px-5 py-2.5 md:px-6 md:py-3 border-2 border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 rounded-lg font-medium flex items-center justify-center gap-2 transition-all duration-300 hover:bg-gray-100 dark:hover:bg-gray-800 shadow-md hover:shadow-lg"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              Contact Me
-            </motion.a>
+              <span>✉</span> Get in Touch
+            </motion.button>
           </motion.div>
         </motion.div>
 
-        {/* Hero Image */}
         <motion.div className="md:w-2/5 w-full flex justify-center mt-12 md:mt-0" variants={imageVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-          <motion.div className="relative group">
+          <motion.div className="relative group p-[3px] rounded-3xl bg-gradient-to-tr from-blue-500 via-purple-500 to-red-500 shadow-xl animate-neon-glow">
             <motion.img
               src={HeroImg}
-              alt="Profile illustration"
-              className="w-full max-w-xs md:max-w-md z-10 relative drop-shadow-xl rounded-2xl"
-              whileHover={{ scale: 1.05, rotate: 2 }}
+              alt="M G Shriram Profile Photo"
+              className="w-full max-w-xs md:max-w-sm z-10 relative rounded-[21px] bg-white dark:bg-[#0b1222] object-cover"
+              whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.3 }}
-            />
-            {/* Floating decor */}
-            <motion.div className="absolute -top-4 -right-4 w-16 h-16 rounded-full bg-pink-500/20 dark:bg-pink-500/30" aria-hidden="true"
-              animate={{ y: [0, -10, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            />
-            <motion.div className="absolute -bottom-4 -left-4 w-12 h-12 rounded-full bg-blue-500/20 dark:bg-blue-500/30" aria-hidden="true"
-              animate={{ y: [0, 10, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
             />
           </motion.div>
         </motion.div>
       </div>
 
-      {/* Scroll Indicator */}
       <motion.div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 hidden md:flex flex-col items-center" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.5, duration: 0.5 }}>
         <span className="text-gray-600 dark:text-gray-400 mb-2 text-sm">Scroll Down</span>
-        <div className="w-6 h-10 border-2 border-[#d9376e] rounded-full flex justify-center">
-          <motion.div className="w-1 h-3 bg-[#d9376e] rounded-full mt-2" animate={{ y: [0, 12, 0] }} transition={{ duration: 1.5, repeat: Infinity }} />
+        <div className="w-6 h-10 border-2 border-[#7c3aed] rounded-full flex justify-center">
+          <motion.div className="w-1 h-3 bg-[#7c3aed] rounded-full mt-2" animate={{ y: [0, 12, 0] }} transition={{ duration: 1.5, repeat: Infinity }} />
         </div>
       </motion.div>
     </section>

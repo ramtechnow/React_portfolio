@@ -2,11 +2,11 @@ import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 import Hero from "./Hero";
+import Education from "./Education";
 import About from "./About";
 import Projects from "./Projects";
-import Resume from "./Resume";
+import Certifications from "./Certifications";
 import Contact from "./Contact";
-import Blog from "./Blog";
 
 export default function HomePage() {
   const { scrollYProgress } = useScroll();
@@ -15,14 +15,14 @@ export default function HomePage() {
   const opacity = useTransform(scrollYProgress, [0, 1], [1, 0.98]);
   const scale = useTransform(scrollYProgress, [0, 1], [1, 0.98]);
 
-  // Section refs
+  // Section refs matching the new layout
   const refs = {
     home: useRef(null),
-    about: useRef(null),
+    education: useRef(null),
+    skills: useRef(null),
     projects: useRef(null),
-    resume: useRef(null),
+    certifications: useRef(null),
     contact: useRef(null),
-    blog: useRef(null),
   };
 
   const sectionVariants = {
@@ -42,7 +42,7 @@ export default function HomePage() {
   };
 
   return (
-    <main className="home-layout relative w-full bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 overflow-x-hidden">
+    <main className="home-layout relative w-full bg-white dark:bg-[#0b1222] text-gray-900 dark:text-gray-100 overflow-x-hidden">
 
       {/* Scroll Progress Bar */}
       <motion.div
@@ -50,7 +50,7 @@ export default function HomePage() {
         style={{ scaleX: scrollYProgress }}
       />
 
-      {/* Animated Wrapper (SAFE for modal now) */}
+      {/* Animated Wrapper */}
       <motion.div style={{ opacity, scale }}>
 
         {/* HOME */}
@@ -58,10 +58,23 @@ export default function HomePage() {
           <Hero scrollTo={handleScrollTo} />
         </section>
 
-        {/* ABOUT */}
+        {/* EDUCATION */}
         <motion.section
-          id="about"
-          ref={refs.about}
+          id="education"
+          ref={refs.education}
+          className="min-h-screen py-0"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={sectionVariants}
+        >
+          <Education />
+        </motion.section>
+
+        {/* SKILLS */}
+        <motion.section
+          id="skills"
+          ref={refs.skills}
           className="min-h-screen py-0"
           initial="hidden"
           whileInView="visible"
@@ -84,17 +97,17 @@ export default function HomePage() {
           <Projects />
         </motion.section>
 
-        {/* RESUME */}
+        {/* CERTIFICATIONS */}
         <motion.section
-          id="resume"
-          ref={refs.resume}
+          id="certifications"
+          ref={refs.certifications}
           className="min-h-screen py-0"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
           variants={sectionVariants}
         >
-          <Resume />
+          <Certifications />
         </motion.section>
 
         {/* CONTACT */}
@@ -108,19 +121,6 @@ export default function HomePage() {
           variants={sectionVariants}
         >
           <Contact />
-        </motion.section>
-
-        {/* BLOG */}
-        <motion.section
-          id="blog"
-          ref={refs.blog}
-          className="min-h-screen py-20"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={sectionVariants}
-        >
-          <Blog />
         </motion.section>
 
       </motion.div>

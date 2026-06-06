@@ -13,7 +13,22 @@ import Blog from "./components/Blog"
 import "./App.css";
 
 function App() {
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("theme");
+      if (saved) return saved === "dark";
+      return window.matchMedia("(prefers-color-scheme: dark)").matches;
+    }
+    return false;
+  });
+
+  const toggleTheme = () => {
+    setIsDark((prev) => {
+      const newVal = !prev;
+      localStorage.setItem("theme", newVal ? "dark" : "light");
+      return newVal;
+    });
+  };
 
   // Theme detection (runs once on mount)
   useEffect(() => {
@@ -21,11 +36,12 @@ function App() {
 
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
 
-    // Initial set
-    setIsDark(mediaQuery.matches);
-
     // Listener for changes
-    const handleThemeChange = (e) => setIsDark(e.matches);
+    const handleThemeChange = (e) => {
+      if (!localStorage.getItem("theme")) {
+        setIsDark(e.matches);
+      }
+    };
 
     if (typeof mediaQuery.addEventListener === "function") {
       mediaQuery.addEventListener("change", handleThemeChange);
@@ -56,6 +72,22 @@ function App() {
     }
   }, []);
 
+  // Sync theme to document element and body for Tailwind and global styles
+  useEffect(() => {
+    if (typeof document === "undefined") return;
+    const rootEl = document.documentElement;
+    const bodyEl = document.body;
+    if (isDark) {
+      rootEl.classList.add("dark");
+      bodyEl.classList.add("theme-dark");
+      bodyEl.classList.remove("theme-light");
+    } else {
+      rootEl.classList.remove("dark");
+      bodyEl.classList.add("theme-light");
+      bodyEl.classList.remove("theme-dark");
+    }
+  }, [isDark]);
+
   // Optional: automatically scroll to top on route change
   // (Uncomment if using Router)
   // useEffect(() => {
@@ -67,7 +99,7 @@ function App() {
   return (
     <div className={`App ${isDark ? "theme-dark" : "theme-light"}`}>
       <Router>
-        <Navbar />
+        <Navbar isDark={isDark} toggleTheme={toggleTheme} />
         <main>
           <Routes>
             <Route path="/" element={<Home />} />
