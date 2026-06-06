@@ -143,7 +143,7 @@ export default function Blog() {
   ];
 
   return (
-    <div className="blog-container bg-gradient-to-br from-indigo-50/20 to-blue-50/20 dark:from-gray-900/40 dark:to-gray-800/40 text-gray-800 dark:text-gray-100 overflow-x-hidden">
+    <div className="blog-container bg-gradient-to-br from-indigo-50/20 to-blue-50/20 dark:from-gray-900/40 dark:to-gray-800/40 text-gray-800 dark:text-gray-100">
       {/* 🔹 Animated Header */}
       <motion.header
         className="blog-header relative overflow-hidden"

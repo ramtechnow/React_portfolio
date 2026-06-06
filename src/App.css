@@ -4,17 +4,24 @@
 
 /* --- GLOBAL PAGE BACKGROUND FIX --- */
 html,
-body,
-#root {
-  min-height: 100%;
+body {
   margin: 0;
   padding: 0;
+  width: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
   scroll-behavior: smooth;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+#root {
+  width: 100%;
+  min-height: 100%;
+}
+
 /* --- MAIN APP CONTAINER --- */
 .App {
+  width: 100%;
   min-height: 100vh;
   display: flex;
   flex-direction: column;

@@ -103,7 +103,7 @@ export default function Hero({ scrollTo }) {
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
         >
-          <motion.h1 className="text-gray-900 dark:text-white text-5xl md:text-6xl lg:text-7xl font-bold leading-tight md:leading-snug" variants={itemVariants}>
+          <motion.h1 className="text-gray-900 dark:text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight md:leading-snug" variants={itemVariants}>
             Hi, I'm <br />
             <span className="text-[#ef4444]">Shriram</span>{" "}
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#7c3aed] to-[#3b82f6] dark:from-[#a78bfa] dark:to-[#60a5fa]">
@@ -166,7 +166,7 @@ export default function Hero({ scrollTo }) {
             <motion.img
               src={HeroImg}
               alt="M G Shriram Profile Photo"
-              className="w-full max-w-xs md:max-w-sm z-10 relative rounded-[21px] bg-white dark:bg-[#0b1222] object-cover"
+              className="w-full max-w-[280px] sm:max-w-xs md:max-w-sm z-10 relative rounded-[21px] bg-white dark:bg-[#0b1222] object-cover"
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.3 }}
             />

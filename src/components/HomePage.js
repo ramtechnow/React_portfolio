@@ -42,7 +42,7 @@ export default function HomePage() {
   };
 
   return (
-    <main className="home-layout relative w-full bg-white dark:bg-[#0b1222] text-gray-900 dark:text-gray-100 overflow-x-hidden">
+    <div className="home-layout relative w-full bg-white dark:bg-[#0b1222] text-gray-900 dark:text-gray-100">
 
       {/* Scroll Progress Bar */}
       <motion.div
@@ -124,6 +124,6 @@ export default function HomePage() {
         </motion.section>
 
       </motion.div>
-    </main>
+    </div>
   );
 }

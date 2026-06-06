@@ -8,6 +8,7 @@ import websiteImg3 from "../assets/project.jpg";
 import websiteImg4 from "../assets/company project.png";
 import websiteImg5 from "../assets/grocery.png";
 import websiteImg6 from "../assets/Weather_app.png";
+import websiteImg7 from "../assets/flowtask.png";
 
 export default function Projects() {
   const [selectedProject, setSelectedProject] = useState(null);
@@ -38,6 +39,27 @@ export default function Projects() {
         "User Authentication",
         "Vite Responsive Design",
         "Firebase Hosting",
+      ],
+    },
+
+    {
+      image: websiteImg7,
+      title: "FlowTask",
+      description:
+        "Developed FlowTask, a collaborative task management web application designed to optimize workflow tracking, task prioritization, and productivity.",
+      demo: "https://flowtask-1bcf9.web.app/",
+      github: "https://github.com/ramtechnow/flowtask",
+      technologies: ["React JS", "Firebase", "Tailwind CSS", "Vite"],
+      challenges:
+        "Managing real-time listener state sync across multiple client sessions without excessive document reads.",
+      solution:
+        "Implemented optimized snapshot listeners in React hooks combined with localized caching rules.",
+      features: [
+        "Real-time Task Sync",
+        "Kanban Board Layout",
+        "User Authentication",
+        "Dynamic Priority Tagging",
+        "Responsive Mobile Views",
       ],
     },
 

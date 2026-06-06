@@ -172,10 +172,10 @@ export default function Header({ isDark, toggleTheme }) {
         <div className="container m-auto px-4 sm:px-6 lg:px-8">
           <motion.div className="flex justify-between items-center py-4 md:py-5" variants={containerVariants} initial="hidden" animate="visible">
             {/* Logo */}
-            <motion.div variants={logoVariants} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="flex items-center">
+            <motion.div variants={logoVariants} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="flex items-center flex-shrink-0">
               <Link
                 to="/"
-                className="font-bold text-gray-900 dark:text-white text-2xl hover:text-primary-500 dark:hover:text-primary-400 transition-colors duration-200 group"
+                className="font-bold text-gray-900 dark:text-white text-xl sm:text-2xl hover:text-primary-500 dark:hover:text-primary-400 transition-colors duration-200 group"
                 onClick={() => {
                   setToggleMenu(false);
                   setActiveSection('home');
@@ -219,7 +219,7 @@ export default function Header({ isDark, toggleTheme }) {
             </div>
 
             {/* Mobile Theme Toggle & Menu Button */}
-            <div className="flex md:hidden items-center gap-4">
+            <div className="flex md:hidden items-center gap-4 flex-shrink-0">
               <button
                 onClick={toggleTheme}
                 className="relative w-12 h-7 flex items-center bg-gray-200 dark:bg-[#7c3aed] rounded-full p-0.5 cursor-pointer transition-colors duration-300 focus:outline-none"
@@ -258,8 +258,7 @@ export default function Header({ isDark, toggleTheme }) {
                 animate="visible"
                 exit="exit"
                 variants={mobileMenuVariants}
-                className={`md:hidden fixed top-full left-0 w-full ${mobileMenuBackground} shadow-lg z-40 border-t border-gray-200 dark:border-gray-700`}
-                style={{ height: '100vh' }}
+                className={`md:hidden fixed top-16 left-0 right-0 bottom-0 ${mobileMenuBackground} shadow-lg z-40 border-t border-gray-200 dark:border-gray-700`}
                 aria-label="Mobile menu"
               >
                 <motion.ul className="flex flex-col px-4 py-6 space-y-4 h-full overflow-y-auto" variants={containerVariants} initial="hidden" animate="visible">

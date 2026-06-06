@@ -89,11 +89,10 @@ export default function Education() {
             {timelineData.map((item, index) => {
               const isEven = index % 2 === 0;
               const cardVariants = isEven ? cardVariantsLeft : cardVariantsRight;
-
               return (
-                <div key={index} className="flex flex-col md:flex-row items-stretch w-full">
+                <div key={index} className="flex flex-col md:flex-row items-stretch w-full relative">
                   {/* Left Side Spacer or Card */}
-                  <div className="w-full md:w-1/2 flex justify-start md:justify-end md:pr-10 order-2 md:order-1">
+                  <div className="w-full md:w-1/2 flex justify-start md:justify-end pl-10 md:pl-0 md:pr-10 order-2 md:order-1">
                     {isEven && (
                       <motion.div
                         variants={cardVariants}
@@ -113,13 +112,13 @@ export default function Education() {
                           <p className="text-sm text-gray-650 dark:text-gray-300 leading-relaxed">{item.description}</p>
                         </div>
                         {/* Connecting Dot pointer */}
-                        <div className="absolute top-1/2 -right-3 w-6 h-6 bg-white dark:bg-[#131b2e] border-t border-r border-slate-200 dark:border-slate-800/80 transform rotate-45 translate-y-[-50%] hidden md:block" />
+                        <div className="absolute top-[28px] -right-3 w-6 h-6 bg-white dark:bg-[#131b2e] border-t border-r border-slate-200 dark:border-slate-800/80 transform rotate-45 hidden md:block" />
                       </motion.div>
                     )}
                   </div>
 
                   {/* Center Dot Indicator */}
-                  <div className="absolute left-4 md:left-1/2 transform -translate-x-1/2 flex items-center justify-center z-10 order-1 md:order-2">
+                  <div className="absolute left-4 md:left-1/2 top-6 transform -translate-x-1/2 flex items-center justify-center z-10 order-1 md:order-2">
                     <motion.div
                       whileHover={{ scale: 1.2 }}
                       className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 dark:from-blue-600 dark:to-purple-600 shadow-md flex items-center justify-center text-white border-4 border-white dark:border-slate-900"
@@ -129,7 +128,7 @@ export default function Education() {
                   </div>
 
                   {/* Right Side Spacer or Card */}
-                  <div className="w-full md:w-1/2 flex justify-start md:pl-10 pl-10 md:pl-10 order-2 md:order-3">
+                  <div className="w-full md:w-1/2 flex justify-start pl-10 md:pl-10 order-2 md:order-3">
                     {!isEven && (
                       <motion.div
                         variants={cardVariants}
@@ -149,7 +148,7 @@ export default function Education() {
                           <p className="text-sm text-gray-650 dark:text-gray-300 leading-relaxed">{item.description}</p>
                         </div>
                         {/* Connecting Dot pointer */}
-                        <div className="absolute top-1/2 -left-3 w-6 h-6 bg-white dark:bg-[#131b2e] border-b border-l border-slate-200 dark:border-slate-800/80 transform rotate-45 translate-y-[-50%] hidden md:block" />
+                        <div className="absolute top-[28px] -left-3 w-6 h-6 bg-white dark:bg-[#131b2e] border-b border-l border-slate-200 dark:border-slate-800/80 transform rotate-45 hidden md:block" />
                       </motion.div>
                     )}
                   </div>
