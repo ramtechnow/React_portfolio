@@ -23,7 +23,8 @@ const About = () => {
   const skillCategories = [
     {
       title: "Frontend & Languages",
-      borderColor: "border-t-4 border-[#ef4444]", // Red/Orange top border
+      borderColor: "border-t-4 border-red-500 dark:border-red-400",
+      titleColor: "text-red-500 dark:text-red-400",
       skills: [
         { name: 'React JS', icon: FaReact, color: 'text-blue-500' },
         { name: 'JavaScript', icon: FaJs, color: 'text-yellow-500' },
@@ -37,7 +38,8 @@ const About = () => {
     },
     {
       title: "Backend & Databases",
-      borderColor: "border-t-4 border-[#10b981]", // Green top border
+      borderColor: "border-t-4 border-emerald-500 dark:border-emerald-400",
+      titleColor: "text-emerald-500 dark:text-emerald-400",
       skills: [
         { name: 'MongoDB', icon: SiMongodb, color: 'text-green-500' },
         { name: 'MySQL', icon: SiMysql, color: 'text-blue-500' },
@@ -47,49 +49,51 @@ const About = () => {
     },
     {
       title: "Cloud & Automation",
-      borderColor: "border-t-4 border-[#8b5cf6]", // Purple top border
+      borderColor: "border-t-4 border-violet-500 dark:border-violet-400",
+      titleColor: "text-violet-500 dark:text-violet-400",
       skills: [
-        { name: 'AWS S3', icon: FaAws, color: 'text-orange-550' },
-        { name: 'AWS EC2', icon: FaAws, color: 'text-orange-550' },
-        { name: 'AWS Lambda', icon: FaAws, color: 'text-orange-550' },
-        { name: 'Selenium', icon: SiSelenium, color: 'text-green-500' },
+        { name: 'AWS S3', icon: FaAws, color: 'text-orange-500' },
+        { name: 'AWS EC2', icon: FaAws, color: 'text-orange-500' },
+        { name: 'AWS Lambda', icon: FaAws, color: 'text-orange-500' },
+        { name: 'Selenium', icon: SiSelenium, color: 'text-green-550' },
         { name: 'Jira', icon: SiJira, color: 'text-blue-600' },
         { name: 'Webdriver', icon: SiSelenium, color: 'text-teal-600' },
-        { name: 'GitHub', icon: FaGithub, color: 'text-gray-750 dark:text-gray-200' }
+        { name: 'GitHub', icon: FaGithub, color: 'text-gray-700 dark:text-gray-250' }
       ]
     },
     {
       title: "Soft Skills & Others",
-      borderColor: "border-t-4 border-[#3b82f6]", // Blue top border
+      borderColor: "border-t-4 border-blue-500 dark:border-blue-400",
+      titleColor: "text-blue-500 dark:text-blue-400",
       skills: [
         { name: 'Agile Methodologies', icon: FaUsers, color: 'text-indigo-500' },
         { name: 'Collaborative Mindset', icon: FaUsers, color: 'text-emerald-500' },
         { name: 'Strong Communication', icon: FaUsers, color: 'text-pink-500' },
         { name: 'Stakeholder Management', icon: FaUsers, color: 'text-purple-500' },
         { name: 'Excel', icon: FaFileExcel, color: 'text-green-600' },
-        { name: 'Gen AI', icon: FaBrain, color: 'text-purple-400' }
+        { name: 'Gen AI', icon: FaBrain, color: 'text-purple-450' }
       ]
     }
   ];
 
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.15 } }
+    visible: { opacity: 1, transition: { staggerChildren: 0.12 } }
   };
 
   const itemVariants = {
-    hidden: { y: 30, opacity: 0 },
-    visible: { y: 0, opacity: 1, transition: { duration: 0.6, ease: 'easeOut' } }
+    hidden: { y: 25, opacity: 0 },
+    visible: { y: 0, opacity: 1, transition: { type: "spring", stiffness: 80, damping: 15 } }
   };
 
   return (
     <section
       id="skills"
-      className="relative bg-transparent px-6 py-20 md:py-28 min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative bg-transparent px-6 py-24 min-h-screen flex items-center justify-center overflow-hidden"
     >
       {/* Decorative Background */}
-      <div className="absolute top-10 right-10 w-40 h-40 rounded-full bg-blue-200/30 dark:bg-blue-900/20 blur-3xl -z-10" aria-hidden="true" />
-      <div className="absolute bottom-10 left-10 w-48 h-48 rounded-full bg-purple-200/30 dark:bg-purple-900/20 blur-3xl -z-10" aria-hidden="true" />
+      <div className="absolute top-10 right-10 w-52 h-52 rounded-full bg-blue-300/10 dark:bg-blue-900/5 blur-3xl -z-10" aria-hidden="true" />
+      <div className="absolute bottom-10 left-10 w-64 h-64 rounded-full bg-purple-300/10 dark:bg-purple-900/5 blur-3xl -z-10" aria-hidden="true" />
 
       <div className="container mx-auto max-w-5xl relative z-10">
         {/* Title */}
@@ -99,21 +103,23 @@ const About = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-4xl md:text-5xl font-bold text-[#7c3aed] dark:text-[#a78bfa] pb-2 border-b-4 border-[#7c3aed] w-fit mx-auto uppercase"
+            className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white"
           >
-            Technical Skills
+            Technical{" "}
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#7c3aed] to-[#3b82f6] dark:from-[#a78bfa] dark:to-[#60a5fa] font-black">
+              Skills
+            </span>
           </motion.h2>
           
-          {/* Centered description / introduction */}
           <motion.div 
-            className="mt-6 max-w-3xl mx-auto space-y-4 text-gray-700 dark:text-gray-300 text-sm md:text-base leading-relaxed text-center"
+            className="mt-6 max-w-3xl mx-auto space-y-4 text-gray-500 dark:text-gray-400 text-sm md:text-base leading-relaxed text-center font-medium"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
           >
             <p>{aboutContent.introduction}</p>
-            <p className="text-xs md:text-sm text-gray-500 dark:text-gray-450">
+            <p className="text-xs md:text-sm text-gray-400 dark:text-gray-500">
               Below are the primary tools, frameworks, and programming languages I use to bring ideas to life.
             </p>
           </motion.div>
@@ -131,9 +137,10 @@ const About = () => {
             <motion.div 
               key={idx}
               variants={itemVariants}
-              className="bg-white dark:bg-[#131b2e]/95 p-6 rounded-2xl shadow-lg border border-gray-100 dark:border-slate-800/80 hover:shadow-xl transition-all duration-300"
+              whileHover={{ y: -4, transition: { duration: 0.2 } }}
+              className={`bg-white dark:bg-[#131b2e] p-6 rounded-2xl shadow-md border border-slate-200/80 dark:border-slate-800/80 hover:shadow-glow transition-all duration-300 ${category.borderColor}`}
             >
-              <h3 className="font-bold text-2xl text-red-500 dark:text-red-400 pb-4 mb-6 border-b border-purple-500/20 dark:border-purple-900/30">
+              <h3 className={`font-bold text-2xl pb-4 mb-6 border-b border-gray-100 dark:border-slate-800 ${category.titleColor}`}>
                 {category.title}
               </h3>
               <div className="flex flex-wrap gap-3">
@@ -142,11 +149,11 @@ const About = () => {
                   return (
                     <motion.div 
                       key={i}
-                      className="flex items-center gap-2 px-3.5 py-2 rounded-full bg-gray-50 dark:bg-[#0f172a]/50 border border-gray-150 dark:border-slate-800 shadow-sm hover:border-[#7c3aed] dark:hover:border-[#a78bfa] transition-all duration-200 cursor-default"
+                      className="flex items-center gap-2.5 px-4 py-2 rounded-xl bg-gray-55/80 dark:bg-slate-800/30 border border-gray-150 dark:border-slate-700/60 shadow-sm hover:border-[#7c3aed] dark:hover:border-[#a78bfa] transition-all duration-200 cursor-default"
                       whileHover={{ scale: 1.05 }}
                     >
-                      <IconComponent className={`${skill.color} text-xl`} />
-                      <span className="text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-200">{skill.name}</span>
+                      <IconComponent className={`${skill.color} text-lg md:text-xl`} />
+                      <span className="text-xs md:text-sm font-bold text-gray-700 dark:text-gray-200">{skill.name}</span>
                     </motion.div>
                   );
                 })}

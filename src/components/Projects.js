@@ -13,7 +13,7 @@ import websiteImg7 from "../assets/flowtask.png";
 export default function Projects() {
   const [selectedProject, setSelectedProject] = useState(null);
 
-  // Lock background scroll
+  // Lock background scroll when modal is active
   useEffect(() => {
     document.body.style.overflow = selectedProject ? "hidden" : "auto";
   }, [selectedProject]);
@@ -41,7 +41,6 @@ export default function Projects() {
         "Firebase Hosting",
       ],
     },
-
     {
       image: websiteImg7,
       title: "FlowTask",
@@ -62,7 +61,6 @@ export default function Projects() {
         "Responsive Mobile Views",
       ],
     },
-
     {
       image: websiteImg2,
       title: "LILO Tracker",
@@ -82,7 +80,6 @@ export default function Projects() {
         "Cross-platform",
       ],
     },
-
     {
       image: websiteImg3,
       title: "Image Search App",
@@ -101,7 +98,6 @@ export default function Projects() {
         "Bootstrap UI Components",
       ],
     },
-
     {
       image: websiteImg4,
       title: "Company Website",
@@ -121,7 +117,6 @@ export default function Projects() {
         "SEO Optimized",
       ],
     },
-
     {
       image: websiteImg5,
       title: "Grocery Store UI",
@@ -141,7 +136,6 @@ export default function Projects() {
         "Accessibility Ready",
       ],
     },
-
     {
       image: websiteImg6,
       title: "Weather Dashboard",
@@ -163,36 +157,58 @@ export default function Projects() {
     },
   ];
 
+  const gridVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
+  };
+
+  const cardVariants = {
+    hidden: { y: 30, opacity: 0 },
+    visible: { y: 0, opacity: 1, transition: { type: "spring", stiffness: 85, damping: 14 } }
+  };
+
   return (
-    <section id="projects" className="py-20 px-6 bg-transparent">
+    <section id="projects" className="py-24 px-6 bg-transparent">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-12">
+        
+        {/* Title */}
+        <div className="text-center mb-16">
           <motion.h2
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-4xl md:text-5xl font-bold text-[#7c3aed] dark:text-[#a78bfa] pb-2 border-b-4 border-[#7c3aed] w-fit mx-auto"
+            className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white"
           >
-            My Projects
+            Featured{" "}
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#7c3aed] to-[#3b82f6] dark:from-[#a78bfa] dark:to-[#60a5fa] font-black">
+              Projects
+            </span>
           </motion.h2>
-          <p className="text-gray-600 dark:text-gray-400 mt-4 max-w-lg mx-auto">
+          <p className="text-gray-500 dark:text-gray-400 mt-4 max-w-lg mx-auto text-sm md:text-base font-medium">
             A showcase of my recent web development, API integrations, and desktop automation solutions.
           </p>
         </div>
 
-        {/* Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Project Grid */}
+        <motion.div 
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+          variants={gridVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+        >
           {projects.map((project, i) => (
             <motion.div
               key={i}
-              whileHover={{ y: -8, transition: { duration: 0.3 } }}
-              className="bg-white dark:bg-[#131b2e] shadow-md hover:shadow-xl rounded-xl overflow-hidden flex flex-col justify-between border border-gray-100 dark:border-slate-800/80 transition-all duration-300"
+              variants={cardVariants}
+              whileHover={{ y: -6, transition: { duration: 0.2 } }}
+              className="bg-white dark:bg-[#131b2e] shadow-md hover:shadow-glow rounded-2xl overflow-hidden flex flex-col justify-between border border-slate-200/60 dark:border-slate-800/80 transition-all duration-300 group"
             >
               <div>
-                {/* Clicking image triggers details modal */}
+                {/* Visual Cover */}
                 <div 
-                  className="cursor-pointer overflow-hidden relative group"
+                  className="cursor-pointer overflow-hidden relative"
                   onClick={() => setSelectedProject(project)}
                 >
                   <img
@@ -200,47 +216,49 @@ export default function Projects() {
                     alt={`${project.title} screenshot`}
                     className="h-52 w-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <span className="text-white text-xs font-semibold bg-black/60 px-3 py-1.5 rounded-full backdrop-blur-sm">
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <span className="text-white text-xs font-bold bg-[#7c3aed] px-3.5 py-1.5 rounded-full shadow-md">
                       Read Details
                     </span>
                   </div>
                 </div>
 
-                <div className="p-5">
+                {/* Content */}
+                <div className="p-6">
                   <h3 
-                    className="text-xl font-bold mb-2 text-gray-900 dark:text-white cursor-pointer hover:text-[#7c3aed] dark:hover:text-[#a78bfa] transition-colors"
+                    className="text-xl font-bold mb-2 text-gray-905 dark:text-white cursor-pointer hover:text-[#7c3aed] dark:hover:text-[#a78bfa] transition-colors"
                     onClick={() => setSelectedProject(project)}
                   >
                     {project.title}
                   </h3>
-
-                  <p className="text-gray-650 dark:text-gray-300 text-sm line-clamp-3 mb-4">
+                  <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed line-clamp-3 mb-4 font-medium">
                     {project.description}
                   </p>
                 </div>
               </div>
 
-              <div className="px-5 pb-5">
-                {/* Tech Tags */}
-                <div className="flex flex-wrap gap-1.5 mb-4">
-                  {project.technologies.map((tech, idx) => (
+              {/* Footer details */}
+              <div className="px-6 pb-6 mt-auto">
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {project.technologies.slice(0, 3).map((tech, idx) => (
                     <span
                       key={idx}
-                      className="bg-indigo-50 dark:bg-indigo-950/40 text-indigo-700 dark:text-indigo-300 text-xs px-2 py-0.5 rounded font-medium border border-indigo-100/50 dark:border-indigo-900/30"
+                      className="bg-purple-50 dark:bg-purple-950/20 text-[#7c3aed] dark:text-[#a78bfa] text-xs px-2.5 py-0.5 rounded-md font-bold border border-purple-100/50 dark:border-purple-900/30"
                     >
                       {tech}
                     </span>
                   ))}
+                  {project.technologies.length > 3 && (
+                    <span className="text-xs font-bold text-gray-400 self-center">+{project.technologies.length - 3} more</span>
+                  )}
                 </div>
 
-                {/* Direct Demo / Code Action Buttons */}
                 <div className="flex gap-3 mt-2">
                   <a
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 text-center py-2 border-2 border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg font-medium transition-all duration-300 text-xs md:text-sm"
+                    className="flex-1 text-center py-2.5 border-2 border-gray-300 dark:border-slate-700 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-slate-800/40 rounded-xl font-bold transition-all duration-300 text-xs md:text-sm"
                   >
                     Code
                   </a>
@@ -248,7 +266,7 @@ export default function Projects() {
                     href={project.demo}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 text-center py-2 bg-gradient-to-r from-[#7c3aed] to-[#6d28d9] text-white rounded-lg font-medium hover:opacity-95 transition-all duration-300 shadow-md hover:shadow-lg text-xs md:text-sm"
+                    className="flex-1 text-center py-2.5 bg-gradient-to-r from-[#7c3aed] to-[#3b82f6] text-white rounded-xl font-bold hover:opacity-95 transition-all duration-300 shadow-md hover:shadow-lg text-xs md:text-sm"
                   >
                     Demo
                   </a>
@@ -256,10 +274,10 @@ export default function Projects() {
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
 
-      {/* Modal */}
+      {/* Details Dialog Overlay */}
       {createPortal(
         <AnimatePresence>
           {selectedProject && (
@@ -280,14 +298,13 @@ export default function Projects() {
                 transition={{ type: "spring", duration: 0.4 }}
               >
                 <div
-                  className="bg-white dark:bg-[#131b2e] max-w-2xl w-full rounded-2xl shadow-2xl max-h-[90vh] overflow-y-auto relative border border-gray-100 dark:border-slate-800/80"
+                  className="bg-white dark:bg-[#131b2e] max-w-2xl w-full rounded-3xl shadow-2xl max-h-[90vh] overflow-y-auto relative border border-slate-200 dark:border-slate-800/80"
                   onClick={(e) => e.stopPropagation()}
                 >
-                  {/* Styled Close Button */}
                   <button
                     onClick={closeModal}
-                    className="absolute top-4 right-4 bg-gray-100 hover:bg-gray-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-gray-750 dark:text-gray-200 p-2 rounded-full shadow-lg transition-colors z-10"
-                    aria-label="Close modal"
+                    className="absolute top-4 right-4 bg-white/90 hover:bg-white dark:bg-slate-800 dark:hover:bg-slate-700 text-gray-800 dark:text-gray-200 p-2.5 rounded-full shadow-md transition-colors z-10"
+                    aria-label="Close details"
                   >
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
@@ -300,31 +317,30 @@ export default function Projects() {
                     className="w-full h-64 object-cover"
                   />
 
-                  <div className="p-6">
-                    <h2 className="text-2xl font-bold mb-2 text-gray-900 dark:text-white">
+                  <div className="p-6 md:p-8">
+                    <h2 className="text-2xl md:text-3xl font-black mb-3 text-gray-900 dark:text-white">
                       {selectedProject.title}
                     </h2>
 
-                    {/* Modal Tech Tags */}
-                    <div className="flex flex-wrap gap-2 mb-4">
+                    <div className="flex flex-wrap gap-2 mb-6">
                       {selectedProject.technologies.map((tech, idx) => (
                         <span
                           key={idx}
-                          className="bg-indigo-50 dark:bg-indigo-950/40 text-indigo-700 dark:text-indigo-300 text-xs px-3 py-1 rounded-full font-medium border border-indigo-100/50 dark:border-indigo-900/30"
+                          className="bg-purple-50 dark:bg-purple-950/20 text-[#7c3aed] dark:text-[#a78bfa] text-xs px-3 py-1 rounded-full font-bold border border-purple-150/50 dark:border-purple-900/30"
                         >
                           {tech}
                         </span>
                       ))}
                     </div>
 
-                    <p className="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed text-sm md:text-base">
+                    <p className="mb-6 text-gray-650 dark:text-gray-300 leading-relaxed font-medium text-sm md:text-base">
                       {selectedProject.description}
                     </p>
 
-                    <div className="space-y-4 mb-6">
+                    <div className="space-y-6 mb-8">
                       <div>
-                        <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Key Features:</h3>
-                        <ul className="list-disc pl-5 text-gray-650 dark:text-gray-300 text-sm space-y-1">
+                        <h3 className="font-bold text-gray-900 dark:text-white mb-2">Key Features:</h3>
+                        <ul className="list-disc pl-5 text-gray-600 dark:text-gray-350 text-sm space-y-1.5 font-medium">
                           {selectedProject.features.map((f, i) => (
                             <li key={i}>{f}</li>
                           ))}
@@ -332,27 +348,26 @@ export default function Projects() {
                       </div>
 
                       <div>
-                        <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Challenges:</h3>
-                        <p className="text-gray-650 dark:text-gray-300 text-sm leading-relaxed">
+                        <h3 className="font-bold text-gray-900 dark:text-white mb-1">Challenges Faced:</h3>
+                        <p className="text-gray-600 dark:text-gray-350 text-sm leading-relaxed font-medium">
                           {selectedProject.challenges}
                         </p>
                       </div>
 
                       <div>
-                        <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Solution:</h3>
-                        <p className="text-gray-650 dark:text-gray-300 text-sm leading-relaxed">
+                        <h3 className="font-bold text-gray-900 dark:text-white mb-1">Solution Implemented:</h3>
+                        <p className="text-gray-600 dark:text-gray-350 text-sm leading-relaxed font-medium">
                           {selectedProject.solution}
                         </p>
                       </div>
                     </div>
 
-                    {/* Responsive Modal Buttons */}
-                    <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t border-gray-100 dark:border-gray-700">
+                    <div className="flex flex-col sm:flex-row gap-3 pt-5 border-t border-gray-100 dark:border-slate-800">
                       <a
                         href={selectedProject.demo}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex-1 text-center py-2.5 bg-gradient-to-r from-[#7c3aed] to-[#6d28d9] text-white rounded-lg font-medium shadow-md hover:shadow-lg hover:opacity-95 transition-all duration-300 text-sm"
+                        className="flex-1 text-center py-3 bg-gradient-to-r from-[#7c3aed] to-[#3b82f6] text-white rounded-xl font-bold shadow-md hover:shadow-lg transition-all duration-300 text-sm"
                       >
                         Live Demo
                       </a>
@@ -361,9 +376,9 @@ export default function Projects() {
                         href={selectedProject.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex-1 text-center py-2.5 border-2 border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-350 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg font-medium transition-all duration-300 text-sm"
+                        className="flex-1 text-center py-3 border-2 border-gray-300 dark:border-slate-700 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-slate-800/40 rounded-xl font-bold transition-all duration-300 text-sm"
                       >
-                        GitHub
+                        GitHub Code
                       </a>
                     </div>
                   </div>
